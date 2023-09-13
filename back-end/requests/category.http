@@ -1,0 +1,15 @@
+POST http://localhost:3333/categories HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Category supertest",
+  "description": "Category supertest description"
+}
+
+###
+
+GET http://localhost:3333/categories HTTP/1.1
+
+###
+GET http://localhost:3333/categories?q=Lanches HTTP/1.1
+
