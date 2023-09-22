@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  guid        String    @unique @default(uuid())
+  name        String
+  description String
+  Product     Product[]
+  File        File?     @relation(fields: [fileId], references: [id])
+  fileId      Int?
+  createdAt   DateTime
+  updatedAt   DateTime
+}
+
+model File {
+  id        Int        @id @default(autoincrement())
+  guid      String     @unique @default(uuid())
+  path      String
+  Category  Category[]
+  Product   Product[]
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  guid        String    @unique @default(uuid())
+  name        String
+  description String
+  price       Float
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+  files       File?     @relation(fields: [fileId], references: [id])
+  fileId      Int?
+  createdAt   DateTime
+  updatedAt   DateTime
+  DayOfWeek   DayOfWeek @relation(fields: [dayOfWeekId], references: [id])
+  dayOfWeekId Int
+}
+
+model DayOfWeek {
+  id        Int       @id @default(autoincrement())
+  guid      String    @unique @default(uuid())
+  name      String
+  createdAt DateTime
+  updatedAt DateTime
+  Product   Product[]
+}

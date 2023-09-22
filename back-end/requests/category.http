@@ -1,0 +1,20 @@
+POST http://localhost:3333/categories HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Category supertessst",
+  "description": "Category supersstest description"
+}
+
+###
+
+GET http://localhost:3333/categories HTTP/1.1
+
+###
+GET http://localhost:3333/categories?q=Lanches HTTP/1.1
+
+###
+
+DELETE http://localhost:3333/categories/508d5ff0-a539-4186-a9ce-9282f0630dc9
+
+
