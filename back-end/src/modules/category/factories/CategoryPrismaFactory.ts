@@ -8,7 +8,7 @@ export class CategoryPrismaFactory
     implements IDefaultFactory<ICategoryPrisma, ICategory>
 {
     async generate(entity: ICategoryPrisma): Promise<ICategory> {
-        return {
+        const result = {
             id: entity.id,
             guid: entity.guid,
             name: entity.name,
@@ -16,6 +16,7 @@ export class CategoryPrismaFactory
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
         };
+
+        return result;
     }
 }
-

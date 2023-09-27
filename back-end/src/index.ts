@@ -6,6 +6,7 @@ import path from "path";
 import { envs } from "./shared/envs";
 import { errorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./routes/categories.routes";
+import { productRoutes } from "./routes/product.routes";
 
 dotenv.config();
 const app = express();
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
         timestamp: new Date(),
     });
 });
-
+app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
 if (envs.nodeEnv === "development") {
