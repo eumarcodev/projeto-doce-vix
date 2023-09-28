@@ -6,6 +6,7 @@ import path from "path";
 import { envs } from "./shared/envs";
 import { errorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./routes/categories.routes";
+import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/categories", categoryRoutes);
+app.use("/dayofweek", dayOfWeekRoutes);
 
 if (envs.nodeEnv === "development") {
     app.use(
