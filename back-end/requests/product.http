@@ -1,0 +1,9 @@
+POST http://localhost:3333/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Xs cddaladssbreddsa basscon",
+  "description": "Pao, churrasco, maionese e salada ",
+  "categoryName": "Bebiddssas",
+  "price": 26.30
+}

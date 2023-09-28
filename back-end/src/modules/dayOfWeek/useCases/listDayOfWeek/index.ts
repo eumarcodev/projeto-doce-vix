@@ -2,25 +2,27 @@ import { CurrentPageValidation } from "@/shared/utils/pagination/adapters/implem
 import { OffsetGenerator } from "@/shared/utils/pagination/adapters/implementations/Offset";
 import { TotalPagesGenerator } from "@/shared/utils/pagination/adapters/implementations/TotalPagesGenerator";
 import { Sorting } from "@/shared/utils/tools/adapters/implementations/Sorting";
-import { CategoryPrismaFactory } from "../../factories/CategoryPrismaFactory";
-import { CategoryPrismaRepository } from "../../repositories/implementations/CategoryRepository";
-import { ListCategoryUseCase } from "./ListCategoryUseCase";
-import { ListCategoryController } from "./ListCategoryController";
+import { DayOfWeekPrismaFactory } from "../../factories/DayOfWeekPrismaFactory";
+import { DayOfWeekPrismaRepository } from "../../repositories/implementations/DayOfWeekRepository";
+import { ListDayOfWeekUseCase } from "./ListDayOfWeekUseCase";
+import { ListDayOfWeekController } from "./ListDayOfWeekUseController";
 
-const categoryFactory = new CategoryPrismaFactory();
-const categoryRepository = new CategoryPrismaRepository(categoryFactory);
+const dayOfWeekFactory = new DayOfWeekPrismaFactory();
+const dayOfWeekyRepository = new DayOfWeekPrismaRepository(dayOfWeekFactory);
 const sorting = new Sorting();
 const offsetGenerator = new OffsetGenerator();
 const totalPagesGenerator = new TotalPagesGenerator();
 const currentPageValidation = new CurrentPageValidation();
-const listCategoryUseCase = new ListCategoryUseCase(
-    categoryRepository,
+const listDayOfWeekUseCase = new ListDayOfWeekUseCase(
+    dayOfWeekyRepository,
     sorting,
     offsetGenerator,
     totalPagesGenerator,
     currentPageValidation,
 );
 
-const listCategoryController = new ListCategoryController(listCategoryUseCase);
+const listDayOfWeekController = new ListDayOfWeekController(
+    listDayOfWeekUseCase,
+);
 
-export { listCategoryController };
+export { listDayOfWeekController };

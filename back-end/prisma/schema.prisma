@@ -44,8 +44,8 @@ model Product {
   fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime
-  DayOfWeek   DayOfWeek @relation(fields: [dayOfWeekId], references: [id])
-  dayOfWeekId Int
+  DayOfWeek   DayOfWeek? @relation(fields: [dayOfWeekId], references: [id])
+  dayOfWeekId Int?
 }
 
 model DayOfWeek {
