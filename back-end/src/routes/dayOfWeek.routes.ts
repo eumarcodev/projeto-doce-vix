@@ -7,4 +7,4 @@ dayOfWeekRoutes.get("/", (request, response, next) => {
     return listDayOfWeekController.handle(request, response, next);
 });
 
-export { dayOfWeekRoutes }
+export { dayOfWeekRoutes };

@@ -1,7 +1,7 @@
 import { CategoryPrismaFactory } from "../../factories/CategoryPrismaFactory";
 import { CategoryPrismaRepository } from "../../repositories/implementations/CategoryRepository";
 import { DeleteCategoryController } from "./DeleteCategoryController";
-import { DeleteCategoryUseCase } from "./DeleteCategoryUsecase";
+import { DeleteCategoryUseCase } from "./DeleteCategoryUseCase";
 
 const categoryFactory = new CategoryPrismaFactory();
 const categoryRepository = new CategoryPrismaRepository(categoryFactory);

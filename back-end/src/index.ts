@@ -6,7 +6,11 @@ import path from "path";
 import { envs } from "./shared/envs";
 import { errorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./routes/categories.routes";
+<<<<<<< HEAD
 import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
+=======
+import { productRoutes } from "./routes/product.routes";
+>>>>>>> feature/create_product_modules
 
 dotenv.config();
 const app = express();
@@ -20,7 +24,7 @@ app.get("/", (req, res) => {
         timestamp: new Date(),
     });
 });
-
+app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
 

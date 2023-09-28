@@ -146,4 +146,3 @@ class CategoryPrismaRepository implements ICategoryRepository {
 }
 
 export { CategoryPrismaRepository };
-
