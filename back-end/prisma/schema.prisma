@@ -33,14 +33,14 @@ model File {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  guid        String    @unique @default(uuid())
+  id          Int        @id @default(autoincrement())
+  guid        String     @unique @default(uuid())
   name        String
   description String
   price       Float
   categoryId  Int
-  category    Category  @relation(fields: [categoryId], references: [id])
-  files       File?     @relation(fields: [fileId], references: [id])
+  category    Category   @relation(fields: [categoryId], references: [id])
+  files       File?      @relation(fields: [fileId], references: [id])
   fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime

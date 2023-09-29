@@ -6,11 +6,8 @@ import path from "path";
 import { envs } from "./shared/envs";
 import { errorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./routes/categories.routes";
-<<<<<<< HEAD
 import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
-=======
 import { productRoutes } from "./routes/product.routes";
->>>>>>> feature/create_product_modules
 
 dotenv.config();
 const app = express();
@@ -38,4 +35,3 @@ if (envs.nodeEnv === "development") {
 app.use("/public/static", express.static(path.resolve(__dirname, "public")));
 
 export default app;
-
