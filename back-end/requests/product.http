@@ -7,3 +7,6 @@ Content-Type: application/json
   "categoryName": "Lanches",
   "price": 26.30
 }
+
+###
+GET http://localhost:3333/products HTTP/1.1

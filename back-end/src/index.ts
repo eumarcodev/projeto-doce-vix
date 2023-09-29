@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
         timestamp: new Date(),
     });
 });
+
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
