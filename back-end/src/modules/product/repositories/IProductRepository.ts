@@ -1,6 +1,5 @@
 import { IProduct } from "../model/IProduct";
 
-
 interface ICreateProductDTO {
     name: string;
     description: string;
@@ -11,9 +10,10 @@ interface ICreateProductDTO {
 
 interface IUpdateProductDTO {
     guid: string;
-    name: string;
-    description: string;
-    price: number;
+    name?: string;
+    description?: string;
+    categoryName?: string;
+    price?: number;
     dayOfWeek?: string;
 }
 
@@ -41,6 +41,7 @@ interface IProductRepository {
         guid,
         name,
         description,
+        categoryName,
         price,
         dayOfWeek,
     }: IUpdateProductDTO): Promise<IProduct | undefined>;

@@ -1,6 +1,5 @@
 import { IPaginationResponse } from "@/shared/utils/pagination/interfaces/IPaginationResponse";
 
-
 export interface IListUseCaseParams {
     search?: string;
     limit?: number;
@@ -20,6 +19,3 @@ export interface IListPaginatedUseCase<T_Entity> {
 export interface IListUseCase<T_Entity> {
     execute({ search, limit, page }: IListUseCaseParams): Promise<T_Entity[]>;
 }
-
-
-

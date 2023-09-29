@@ -12,4 +12,3 @@ export const HttpStatusCode = {
     SERVER_ERROR: 500,
     TOO_MANY_REQUESTS: 429,
 };
-

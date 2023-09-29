@@ -1,16 +1,17 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import {
     IListPaginatedUseCase,
     IListUseCaseParams,
 } from "@/shared/infra/protocols/IListUseCase";
-import { IProduct } from "../../model/IProduct";
-import { IPaginationResponse } from "@/shared/utils/pagination/interfaces/IPaginationResponse";
-import { IProductRepository } from "../../repositories/IProductRepository";
-import { ISorting } from "@/shared/utils/tools/adapters/ISorting";
+import { ICurrentPageValidation } from "@/shared/utils/pagination/adapters/ICurrentPageValidation";
 import { IOffsetGenerator } from "@/shared/utils/pagination/adapters/IOffset";
 import { ITotalPagesGenerator } from "@/shared/utils/pagination/adapters/ITotalPagesGenerator";
-import { ICurrentPageValidation } from "@/shared/utils/pagination/adapters/ICurrentPageValidation";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IPaginationResponse } from "@/shared/utils/pagination/interfaces/IPaginationResponse";
+import { ISorting } from "@/shared/utils/tools/adapters/ISorting";
+
+import { IProduct } from "../../model/IProduct";
+import { IProductRepository } from "../../repositories/IProductRepository";
 
 export class ListProductUseCase implements IListPaginatedUseCase<IProduct> {
     constructor(

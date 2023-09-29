@@ -1,5 +1,6 @@
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { Category as PCategory } from "@prisma/client";
+
 import { ICategory } from "../model/ICategory";
 
 export interface ICategoryPrisma extends PCategory {}

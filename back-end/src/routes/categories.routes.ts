@@ -1,7 +1,8 @@
-import { createCategoryController } from "@/modules/category/useCases/createCategory";
-import { listCategoryController } from "@/modules/category/useCases/listCategory";
-import { deleteCategoryController } from "@/modules/category/useCases/deleteCategory";
 import { Router } from "express";
+
+import { createCategoryController } from "@/modules/category/useCases/createCategory";
+import { deleteCategoryController } from "@/modules/category/useCases/deleteCategory";
+import { listCategoryController } from "@/modules/category/useCases/listCategory";
 
 const categoryRoutes = Router();
 

@@ -1,16 +1,17 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import {
     IListPaginatedUseCase,
     IListUseCaseParams,
 } from "@/shared/infra/protocols/IListUseCase";
-import { IDayOfWeek } from "../../model/IDayOfWeek";
-import { IPaginationResponse } from "@/shared/utils/pagination/interfaces/IPaginationResponse";
-import { IDayOfWeekRepository } from "../../repositories/IDayOfWeekRepository";
-import { ISorting } from "@/shared/utils/tools/adapters/ISorting";
+import { ICurrentPageValidation } from "@/shared/utils/pagination/adapters/ICurrentPageValidation";
 import { IOffsetGenerator } from "@/shared/utils/pagination/adapters/IOffset";
 import { ITotalPagesGenerator } from "@/shared/utils/pagination/adapters/ITotalPagesGenerator";
-import { ICurrentPageValidation } from "@/shared/utils/pagination/adapters/ICurrentPageValidation";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IPaginationResponse } from "@/shared/utils/pagination/interfaces/IPaginationResponse";
+import { ISorting } from "@/shared/utils/tools/adapters/ISorting";
+
+import { IDayOfWeek } from "../../model/IDayOfWeek";
+import { IDayOfWeekRepository } from "../../repositories/IDayOfWeekRepository";
 
 export class ListDayOfWeekUseCase implements IListPaginatedUseCase<IDayOfWeek> {
     constructor(

@@ -1,7 +1,9 @@
-import { DeleteProductUseCase } from "./DeleteProductUseCase";
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+
+import { DeleteProductUseCase } from "./DeleteProductUseCase";
 
 export class DeleteProductController implements IController {
     constructor(private readonly useCase: DeleteProductUseCase) {}

@@ -1,13 +1,14 @@
+import { context } from "@/shared/infra/database/Context";
+import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
+import { IDayOfWeekPrisma } from "../../factories/DayOfWeekPrismaFactory";
+import { IDayOfWeek } from "../../model/IDayOfWeek";
 import {
     IDayOfWeekRepository,
     IListCategoryRequest,
     IListDayOfWeekResponse,
 } from "../IDayOfWeekRepository";
-import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
-import { IDayOfWeekPrisma } from "../../factories/DayOfWeekPrismaFactory";
-import { IDayOfWeek } from "../../model/IDayOfWeek";
-import { context } from "@/shared/infra/database/Context";
 
 class DayOfWeekPrismaRepository implements IDayOfWeekRepository {
     private prismaClient: PrismaClient;
@@ -75,4 +76,4 @@ class DayOfWeekPrismaRepository implements IDayOfWeekRepository {
     }
 }
 
-export { DayOfWeekPrismaRepository }
+export { DayOfWeekPrismaRepository };

@@ -1,8 +1,10 @@
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
-import { ListDayOfWeekUseCase } from "./ListDayOfWeekUseCase";
-import { validateQuery } from "@/shared/utils/validateQueryList";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+import { validateQuery } from "@/shared/utils/validateQueryList";
+
+import { ListDayOfWeekUseCase } from "./ListDayOfWeekUseCase";
 
 export class ListDayOfWeekController implements IController {
     constructor(private readonly listDayOfWeekUseCase: ListDayOfWeekUseCase) {}

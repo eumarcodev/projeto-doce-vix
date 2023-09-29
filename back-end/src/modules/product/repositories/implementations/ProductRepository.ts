@@ -1,9 +1,10 @@
-import { PrismaClient } from "@prisma/client";
-import * as I from "../IProductRepository";
 import { context } from "@/shared/infra/database/Context";
-import { IProduct } from "../../model/IProduct";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
+import { PrismaClient } from "@prisma/client";
+
 import { IProductPrisma } from "../../factories/ProductPrismaFactory";
+import { IProduct } from "../../model/IProduct";
+import * as I from "../IProductRepository";
 import { IProductRepository } from "../IProductRepository";
 
 class ProductPrismaRepository implements IProductRepository {

@@ -1,8 +1,10 @@
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
-import { ListProductUseCase } from "./ListProductUseCase";
-import { validateQuery } from "@/shared/utils/validateQueryList";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+import { validateQuery } from "@/shared/utils/validateQueryList";
+
+import { ListProductUseCase } from "./ListProductUseCase";
 
 export class ListProductsController implements IController {
     constructor(private readonly listProductsUseCase: ListProductUseCase) {}

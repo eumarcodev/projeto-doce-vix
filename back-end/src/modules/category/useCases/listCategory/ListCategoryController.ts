@@ -1,9 +1,11 @@
+import { Request, Response, NextFunction } from "express";
+
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IContext } from "@/shared/infra/database/Context";
 import { IController } from "@/shared/infra/protocols/IController";
-import { Request, Response, NextFunction } from "express";
-import { ListCategoryUseCase } from "./ListCategoryUseCase";
 import { validateQuery } from "@/shared/utils/validateQueryList";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+
+import { ListCategoryUseCase } from "./ListCategoryUseCase";
 
 export class ListCategoryController implements IController {
     constructor(private readonly listCategoryUseCase: ListCategoryUseCase) {}
@@ -37,4 +39,3 @@ export class ListCategoryController implements IController {
         }
     }
 }
-

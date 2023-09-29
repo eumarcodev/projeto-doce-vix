@@ -1,5 +1,5 @@
-import * as Yup from "yup";
 import { Request } from "express";
+import * as Yup from "yup";
 
 export const validateQuery = async (request: Request): Promise<void> => {
     const schema = Yup.object({
@@ -10,4 +10,3 @@ export const validateQuery = async (request: Request): Promise<void> => {
 
     await schema.validate(request);
 };
-

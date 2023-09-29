@@ -1,4 +1,9 @@
+import { context } from "@/shared/infra/database/Context";
+import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
+import { ICategoryPrisma } from "../../factories/CategoryPrismaFactory";
+import { ICategory } from "../../model/ICategory";
 import {
     ICategoryRepository,
     ICreateCategoryDTO,
@@ -6,10 +11,6 @@ import {
     IListCategoryResponse,
     IUpdateCategoryDTO,
 } from "../ICategoryRepository";
-import { context } from "@/shared/infra/database/Context";
-import { ICategory } from "../../model/ICategory";
-import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
-import { ICategoryPrisma } from "../../factories/CategoryPrismaFactory";
 
 class CategoryPrismaRepository implements ICategoryRepository {
     private prismaClient: PrismaClient;

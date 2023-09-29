@@ -6,4 +6,4 @@ interface IDayOfWeek {
     updatedAt: Date;
 }
 
-export { IDayOfWeek }
+export { IDayOfWeek };

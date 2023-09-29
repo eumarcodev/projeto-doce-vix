@@ -1,13 +1,13 @@
-import express from "express";
-import * as dotenv from "dotenv";
 import cors from "cors";
-
+import * as dotenv from "dotenv";
+import express from "express";
 import path from "path";
-import { envs } from "./shared/envs";
+
 import { errorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./routes/categories.routes";
 import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
 import { productRoutes } from "./routes/product.routes";
+import { envs } from "./shared/envs";
 
 dotenv.config();
 const app = express();

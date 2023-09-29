@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { listDayOfWeekController } from "@/modules/dayOfWeek/useCases/listDayOfWeek";
 
 const dayOfWeekRoutes = Router();

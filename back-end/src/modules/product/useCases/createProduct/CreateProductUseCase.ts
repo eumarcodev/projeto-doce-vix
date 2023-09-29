@@ -11,9 +11,9 @@ export class CreateProductUseCase
     implements IUseCase<ICreateProductDTO, IProduct>
 {
     constructor(
-        private readonly repositoryCategory: ICategoryRepository,
-        private readonly repository: IProductRepository,
-        private readonly repositoryDayOfWeek: IDayOfWeekRepository,
+        private readonly categoryRepository: ICategoryRepository,
+        private readonly dayOfWeekRepository: IDayOfWeekRepository,
+        private readonly productRepository: IProductRepository,
     ) {}
 
     async execute({
@@ -24,32 +24,31 @@ export class CreateProductUseCase
         dayOfWeek,
     }: ICreateProductDTO): Promise<IProduct> {
         const categoryExists =
-            await this.repositoryCategory.findByName(categoryName);
+            await this.categoryRepository.findByName(categoryName);
         if (!categoryExists)
             throw new ErrorHandler(
                 "Category not found",
                 HttpStatusCode.NOT_FOUND,
             );
 
-        if (dayOfWeek !== undefined) {
-            const dayOfWeekExists =
-                await this.repositoryDayOfWeek.findByName(dayOfWeek);
-
-            if (!dayOfWeekExists)
+        if (dayOfWeek) {
+            const dayOfWeekExist =
+                await this.dayOfWeekRepository.findByName(dayOfWeek);
+            if (!dayOfWeekExist)
                 throw new ErrorHandler(
-                    "Day of week not found",
+                    "Category not found",
                     HttpStatusCode.NOT_FOUND,
                 );
         }
 
-        const productExists = await this.repository.findByName(name);
+        const productExists = await this.productRepository.findByName(name);
         if (productExists)
             throw new ErrorHandler(
                 "Product already exists",
                 HttpStatusCode.CONFLICT,
             );
 
-        const product = await this.repository.create({
+        const product = await this.productRepository.create({
             name,
             description,
             categoryName,

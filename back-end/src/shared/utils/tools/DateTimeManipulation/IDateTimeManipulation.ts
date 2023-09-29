@@ -12,10 +12,10 @@ export interface IDateTimeManipulation {
     isTimeOfDateBetween(
         compareDateTime: Date,
         firstDateTime: Date,
-        secondDateTime: Date
+        secondDateTime: Date,
     ): boolean;
     convertStrHourToDateTime(
-        hourString: string | null | undefined
+        hourString: string | null | undefined,
     ): Date | null;
     isTimeOfDateBefore(compareDateTime: Date, dateTime: Date): boolean;
     isAM(dateTime: Date): boolean;

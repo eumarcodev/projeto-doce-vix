@@ -1,5 +1,6 @@
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { Product as PProduct } from "@prisma/client";
+
 import { IProduct } from "../model/IProduct";
 
 export interface IProductPrisma extends PProduct {}
@@ -19,6 +20,5 @@ export class ProductPrismaFactory
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
         };
-        
     }
 }

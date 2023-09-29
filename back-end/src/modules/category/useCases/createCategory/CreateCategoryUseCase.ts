@@ -1,8 +1,9 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
+
 import { ICategory } from "../../model/ICategory";
 import { ICategoryRepository } from "../../repositories/ICategoryRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 interface IRequest {
     name: string;
@@ -35,4 +36,3 @@ export class CreateCategoryUseCase implements IUseCase<IRequest, ICategory> {
         return category;
     }
 }
-

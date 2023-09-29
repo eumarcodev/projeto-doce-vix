@@ -1,5 +1,6 @@
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { DayOfWeek as PDayOfWeek } from "@prisma/client";
+
 import { IDayOfWeek } from "../model/IDayOfWeek";
 
 export interface IDayOfWeekPrisma extends PDayOfWeek {}

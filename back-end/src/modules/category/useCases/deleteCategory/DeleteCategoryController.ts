@@ -1,7 +1,9 @@
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
-import { DeleteCategoryUseCase } from "./DeleteCategoryUseCase";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+
+import { DeleteCategoryUseCase } from "./DeleteCategoryUseCase";
 
 class DeleteCategoryController implements IController {
     constructor(private readonly useCase: DeleteCategoryUseCase) {}
@@ -15,7 +17,6 @@ class DeleteCategoryController implements IController {
             const { guid } = request.params;
 
             const deletedCategory = await this.useCase.execute({ guid });
-
 
             return response.status(HttpStatusCode.OK).json(deletedCategory);
         } catch (error) {
