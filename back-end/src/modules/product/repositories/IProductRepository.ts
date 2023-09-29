@@ -1,6 +1,5 @@
 import { IProduct } from "../model/IProduct";
 
-
 interface ICreateProductDTO {
     name: string;
     description: string;
