@@ -1,8 +1,6 @@
 import { IContext } from "@/shared/infra/database/Context";
 import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { ParsedQs } from "qs";
 import { ListCategoryUseCase } from "./ListCategoryUseCase";
 import { validateQuery } from "@/shared/utils/validateQueryList";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";

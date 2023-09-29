@@ -2,11 +2,16 @@ POST http://localhost:3333/products HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "X SALADA BACON",
+  "name": "X SALADA ddBdsddddAddOddN",
   "description": "Pao, BACON, maionese e salada ",
   "categoryName": "Lanches",
-  "price": 26.30
+  "price": 26.30,
+  "dayOfWeek": "Segunddda"
 }
 
 ###
 GET http://localhost:3333/products HTTP/1.1
+
+####
+
+DELETE http://localhost:3333/products/d593185c-101e-43a2-b760-b3747b1ec29b HTTP/1.1

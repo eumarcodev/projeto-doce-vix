@@ -5,6 +5,7 @@ import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ICreateProductDTO } from "../../repositories/IProductRepository";
 import { ICategoryRepository } from "@/modules/category/repositories/ICategoryRepository";
+import { IDayOfWeekRepository } from "@/modules/dayOfWeek/repositories/IDayOfWeekRepository";
 
 export class CreateProductUseCase
     implements IUseCase<ICreateProductDTO, IProduct>
@@ -12,6 +13,7 @@ export class CreateProductUseCase
     constructor(
         private readonly repositoryCategory: ICategoryRepository,
         private readonly repository: IProductRepository,
+        private readonly repositoryDayOfWeek: IDayOfWeekRepository,
     ) {}
 
     async execute({
@@ -28,6 +30,17 @@ export class CreateProductUseCase
                 "Category not found",
                 HttpStatusCode.NOT_FOUND,
             );
+
+        if (dayOfWeek !== undefined) {
+            const dayOfWeekExists =
+                await this.repositoryDayOfWeek.findByName(dayOfWeek);
+
+            if (!dayOfWeekExists)
+                throw new ErrorHandler(
+                    "Day of week not found",
+                    HttpStatusCode.NOT_FOUND,
+                );
+        }
 
         const productExists = await this.repository.findByName(name);
         if (productExists)
