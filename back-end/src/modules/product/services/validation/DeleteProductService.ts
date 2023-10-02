@@ -1,4 +1,4 @@
-import { IValidator } from "@/shared/infra/protocols/IServices";
+import { IValidator } from "@/shared/infra/protocols/IService";
 import { IProductRepository } from "../../repositories/IProductRepository";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";

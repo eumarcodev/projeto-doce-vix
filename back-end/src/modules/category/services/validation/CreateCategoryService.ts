@@ -1,4 +1,4 @@
-import { IValidator } from "@/shared/infra/protocols/IServices";
+import { IValidator } from "@/shared/infra/protocols/IService";
 import {
     ICategoryRepository,
     ICreateCategoryDTO,
