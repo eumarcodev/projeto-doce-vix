@@ -1,4 +1,4 @@
-import { IValidator } from "@/shared/infra/protocols/IService";
+import { IValidator } from "@/shared/infra/protocols/IValidator";
 import { IProductRepository } from "../../repositories/IProductRepository";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
@@ -22,3 +22,4 @@ export class DeleteProductService implements IValidator<IRequest> {
             );
     }
 }
+

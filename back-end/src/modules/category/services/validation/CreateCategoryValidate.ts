@@ -1,19 +1,16 @@
-import { IValidator } from "@/shared/infra/protocols/IService";
+import { IValidator } from "@/shared/infra/protocols/IValidator";
 import {
     ICategoryRepository,
-    IUpdateCategoryDTO,
+    ICreateCategoryDTO,
 } from "../../repositories/ICategoryRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 
-export class UpdateCategoryService implements IValidator<IUpdateCategoryDTO> {
+export class CreateCategoryValidator implements IValidator<ICreateCategoryDTO> {
     constructor(private readonly repository: ICategoryRepository) {}
 
-    async validate(data: IUpdateCategoryDTO): Promise<void> {
-        const { guid, name } = data;
-
-        if (!guid)
-            throw new ErrorHandler("Guid is required", HttpStatusCode.CONFLICT);
+    async validate(data: ICreateCategoryDTO): Promise<void> {
+        const { name } = data;
 
         const categoryExists = await this.repository.findByName(name);
 
@@ -24,3 +21,4 @@ export class UpdateCategoryService implements IValidator<IUpdateCategoryDTO> {
             );
     }
 }
+

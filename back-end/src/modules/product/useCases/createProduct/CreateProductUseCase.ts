@@ -7,27 +7,27 @@ import {
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
-import { CreateProductService } from "../../services/validation/CreateProductService";
+import { CreateProductService } from "../../services/CreateProductService";
 
 export class CreateProductUseCase
     implements IUseCase<ICreateProductDTO, IProduct>
 {
-    constructor(
-        private readonly createProductService: CreateProductService,
-        private readonly repository: IProductRepository,
-    ) {}
+    constructor(private readonly createCategoryService: CreateProductService) {}
 
-    async execute(data: ICreateProductDTO): Promise<IProduct> {
-        await this.createProductService.validate(data);
-
-        const product = await this.repository.create(data);
-
-        if (!product)
-            throw new ErrorHandler(
-                "Error on create product",
-                HttpStatusCode.BAD_REQUEST,
-            );
-
-        return product;
+    async execute({
+        name,
+        description,
+        price,
+        categoryName,
+        dayOfWeek,
+    }: ICreateProductDTO): Promise<IProduct> {
+        return await this.createCategoryService.execute({
+            name,
+            description,
+            price,
+            categoryName,
+            dayOfWeek,
+        });
     }
 }
+

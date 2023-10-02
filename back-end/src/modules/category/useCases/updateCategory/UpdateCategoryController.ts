@@ -14,6 +14,8 @@ class UpdateCategoryController implements IController {
         try {
             const { guid, name, description } = request.body;
 
+            console.log(guid, name, description);
+
             const category = await this.useCase.execute({
                 guid,
                 name,
@@ -27,3 +29,4 @@ class UpdateCategoryController implements IController {
 }
 
 export { UpdateCategoryController };
+

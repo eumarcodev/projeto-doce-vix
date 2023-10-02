@@ -7,14 +7,14 @@ import {
     ICategoryRepository,
     ICreateCategoryDTO,
 } from "../../repositories/ICategoryRepository";
-import { CreateCategoryService } from "../../services/validation/CreateCategoryService";
+import { CreateCategoryValidator } from "../../services/validation/CreateCategoryValidate";
 
 export class CreateCategoryUseCase
     implements IUseCase<ICreateCategoryDTO, ICategory>
 {
     constructor(
         private readonly repository: ICategoryRepository,
-        private readonly createCategoryService: CreateCategoryService,
+        private readonly createCategoryService: CreateCategoryValidator,
     ) {}
 
     async execute(data: ICreateCategoryDTO): Promise<ICategory> {
@@ -31,3 +31,4 @@ export class CreateCategoryUseCase
         return category;
     }
 }
+

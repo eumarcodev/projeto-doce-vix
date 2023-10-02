@@ -2,7 +2,7 @@ POST http://localhost:3333/categories HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Lanchess",
+  "name": "Lanches",
   "description": "Show"
 }
 
@@ -15,16 +15,17 @@ GET http://localhost:3333/categories?q=Lanches HTTP/1.1
 
 ###
 
-DELETE http://localhost:3333/categories/7fe00b75-3638-4ed1-bde9-9f2e1b6f7a13
+DELETE http://localhost:3333/categories/253f67a9-ae48-4099-814d-6e2ae33966a6
 
 
 ###
 
 PUT http://localhost:3333/categories HTTP/1.1 
+Content-Type: application/json
 
 {
-    "guid": "396c1863-eb41-4380-ad0d-2f9e372a1896",
-    "name": "Lanchess",
-    "description": "Show"
+    "guid": "52a2eebb-fc67-412d-9cb5-3f75c81823cb",
+    "name": "Lanches novo",
+    "description": "novo"
 }
 
