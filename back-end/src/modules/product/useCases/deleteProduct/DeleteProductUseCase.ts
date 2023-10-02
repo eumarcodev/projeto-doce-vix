@@ -1,27 +1,27 @@
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-
 import { IProduct } from "../../model/IProduct";
 import { IProductRepository } from "../../repositories/IProductRepository";
-
-interface IRequest {
-    guid: string;
-}
+import { DeleteProductService } from "../../services/validation/DeleteProductService";
+import { IRequest } from "../../services/validation/DeleteProductService";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 export class DeleteProductUseCase implements IUseCase<IRequest, IProduct> {
-    constructor(private readonly repository: IProductRepository) {}
+    constructor(
+        private readonly repository: IProductRepository,
+        private readonly deleteProductService: DeleteProductService,
+    ) {}
 
-    async execute({ guid }: IRequest): Promise<IProduct> {
-        const product = await this.repository.findByGuid(guid);
+    async execute(data: IRequest): Promise<IProduct> {
+        await this.deleteProductService.validate(data);
+
+        const product = await this.repository.delete(data.guid);
 
         if (!product)
             throw new ErrorHandler(
-                "Product not found",
-                HttpStatusCode.NOT_FOUND,
+                "Error on delete product",
+                HttpStatusCode.BAD_REQUEST,
             );
-
-        await this.repository.delete(guid);
 
         return product;
     }

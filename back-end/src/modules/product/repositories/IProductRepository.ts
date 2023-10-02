@@ -41,8 +41,8 @@ interface IProductRepository {
         guid,
         name,
         description,
-        categoryName,
         price,
+        categoryName,
         dayOfWeek,
     }: IUpdateProductDTO): Promise<IProduct | undefined>;
     delete(guid: string): Promise<IProduct | undefined>;

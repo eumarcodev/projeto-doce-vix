@@ -6,42 +6,20 @@ import {
 import { IProduct } from "../../model/IProduct";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { UpdateProductService } from "../../services/validation/UpdateProductService";
 
 export class UpdateProductUseCase
     implements IUseCase<IUpdateProductDTO, IProduct>
 {
-    constructor(private readonly productRepository: IProductRepository) {}
+    constructor(
+        private readonly repository: IProductRepository,
+        private readonly updateProductService: UpdateProductService,
+    ) {}
 
-    async execute({
-        guid,
-        name,
-        description,
-        price,
-        categoryName,
-        dayOfWeek,
-    }: IUpdateProductDTO): Promise<IProduct> {
-        if (!guid) {
-            throw new ErrorHandler(
-                "guid is required",
-                HttpStatusCode.BAD_REQUEST,
-            );
-        }
-        const productExists = await this.productRepository.findByGuid(guid);
+    async execute(data: IUpdateProductDTO): Promise<IProduct> {
+        await this.updateProductService.validate(data);
 
-        if (!productExists)
-            throw new ErrorHandler(
-                "Product not found",
-                HttpStatusCode.NOT_FOUND,
-            );
-
-        const product = await this.productRepository.update({
-            guid,
-            name,
-            description,
-            price,
-            dayOfWeek,
-            categoryName,
-        });
+        const product = await this.repository.update(data);
 
         if (!product)
             throw new ErrorHandler(

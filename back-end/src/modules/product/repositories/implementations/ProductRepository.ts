@@ -77,12 +77,19 @@ class ProductPrismaRepository implements IProductRepository {
         guid,
         name,
         description,
+        categoryName,
         price,
         dayOfWeek,
     }: I.IUpdateProductDTO): Promise<IProduct | undefined> {
         const dayOfWeekP = await this.prismaClient.dayOfWeek.findFirst({
             where: {
                 name: dayOfWeek,
+            },
+        });
+
+        const categoryNameP = await this.prismaClient.category.findFirst({
+            where: {
+                name: categoryName,
             },
         });
 
@@ -94,6 +101,7 @@ class ProductPrismaRepository implements IProductRepository {
                 name,
                 price,
                 description,
+                categoryId: categoryNameP?.id,
                 dayOfWeekId: dayOfWeekP?.id,
                 updatedAt: new Date(),
             },

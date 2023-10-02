@@ -8,7 +8,7 @@ interface ICreateCategoryDTO {
 interface IUpdateCategoryDTO {
     guid: string;
     name: string;
-    description: string;
+    description?: string;
 }
 
 interface IListCategoryResponse {
