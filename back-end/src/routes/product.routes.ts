@@ -2,11 +2,12 @@ import { createProductController } from "@/modules/product/useCases/createProduc
 import { listProductsController } from "@/modules/product/useCases/listProducts";
 import { updateProductController } from "@/modules/product/useCases/updateProduct";
 import { deleteProductController } from "@/modules/product/useCases/deleteProduct";
+import { getToken } from "@/middlewares/auth";
 import { Router } from "express";
 
 const productRoutes = Router();
 
-productRoutes.get("/", (request, response, next) => {
+productRoutes.get("/", getToken, (request, response, next) => {
     return listProductsController.handle(request, response, next);
 });
 

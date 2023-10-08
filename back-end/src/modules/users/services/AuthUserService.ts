@@ -34,7 +34,7 @@ export class AuthUserService implements IService<IRequest, string> {
         const token = sign(
             { subject: userExists.id },
             String(process.env.JWT_SALT),
-            { expiresIn: "20m" },
+            { expiresIn: "10s" },
         );
 
         return token;
