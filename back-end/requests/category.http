@@ -2,12 +2,7 @@ POST http://localhost:3333/categories HTTP/1.1
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
   "name": "LanchdDdDdedss "
-=======
-  "name": "Lanchdddes",
-  "description": "Show"
->>>>>>> feature/create_module_users
 }
 
 ###
@@ -19,11 +14,7 @@ GET http://localhost:3333/categories?q=Lanches HTTP/1.1
 
 ###
 
-<<<<<<< HEAD
-DELETE http://localhost:3333/categories/82a5fc9b-2fba-43e6-adee-f85f25e4982d
-=======
-DELETE http://localhost:3333/categories/c0ded9b8-eb9b-4d5-b7fe-985a206b8450
->>>>>>> feature/create_module_users
+DELETE http://localhost:3333/categories/fa5285dc-e1a5-4d16-94f9-a419c3b7aa3c
 
 
 ###
@@ -32,12 +23,6 @@ PUT http://localhost:3333/categories HTTP/1.1
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-    "guid": "396c1863-eb41-4380-ad0d-2f9e372a1896",
-    "name": "Bebidas",
-    "description": "Bebidas em geral"
-=======
-    "guid": "fa5285dc-e1a5-4d16-94f9-a419c3b7aa3c"
->>>>>>> feature/create_module_users
+    "guid": "1dec99c3-9212-4dea-8584-240fb2c44158"
 }
 
