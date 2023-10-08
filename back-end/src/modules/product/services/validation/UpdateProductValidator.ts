@@ -8,7 +8,7 @@ import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ICategoryRepository } from "@/modules/category/repositories/ICategoryRepository";
 import { IDayOfWeekRepository } from "@/modules/dayOfWeek/repositories/IDayOfWeekRepository";
 
-export class UpdateProductService implements IValidator<IUpdateProductDTO> {
+export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
     constructor(
         private readonly categoryRepository: ICategoryRepository,
         private readonly productRepository: IProductRepository,

@@ -3,10 +3,15 @@ import { CategoryPrismaRepository } from "../../repositories/implementations/Cat
 import { UpdateCategoryUseCase } from "./UpdateCategoryUseCase";
 import { UpdateCategoryController } from "./UpdateCategoryController";
 import { UpdateCategoryService } from "../../services/UpdateCategoryService";
+import { UpdateCategoryValidator } from "../../services/validation/UpdateCategoryValidate";
 
 const categoryFactory = new CategoryPrismaFactory();
 const categoryRepository = new CategoryPrismaRepository(categoryFactory);
-const updateCategoryService = new UpdateCategoryService(categoryRepository);
+const updateCategoryValidator = new UpdateCategoryValidator(categoryRepository);
+const updateCategoryService = new UpdateCategoryService(
+    categoryRepository,
+    updateCategoryValidator,
+);
 
 const updateCategoryUseCase = new UpdateCategoryUseCase(updateCategoryService);
 
@@ -15,4 +20,3 @@ const updateCategoryController = new UpdateCategoryController(
 );
 
 export { updateCategoryController };
-

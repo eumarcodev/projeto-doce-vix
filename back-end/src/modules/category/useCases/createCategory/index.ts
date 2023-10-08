@@ -3,17 +3,18 @@ import { CategoryPrismaRepository } from "../../repositories/implementations/Cat
 import { CreateCategoryController } from "./CreateCategoryController";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 import { CreateCategoryValidator } from "../../services/validation/CreateCategoryValidate";
+import { CreateCategoryService } from "../../services/CreateCategoryService";
 
 const categoryFacotry = new CategoryPrismaFactory();
 const categoryRepository = new CategoryPrismaRepository(categoryFacotry);
-const createCategoryService = new CreateCategoryValidator(categoryRepository);
-const createCategoryUseCase = new CreateCategoryUseCase(
+const createCategoryValidator = new CreateCategoryValidator(categoryRepository);
+const createCategoryService = new CreateCategoryService(
     categoryRepository,
-    createCategoryService,
+    createCategoryValidator,
 );
+const createCategoryUseCase = new CreateCategoryUseCase(createCategoryService);
 const createCategoryController = new CreateCategoryController(
     createCategoryUseCase,
 );
 
 export { createCategoryController };
-

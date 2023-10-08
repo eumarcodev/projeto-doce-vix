@@ -16,7 +16,7 @@ export class DeleteProductController implements IController {
         try {
             const { guid } = request.params;
 
-            const deleteProduct = await this.useCase.execute({ guid });
+            const deleteProduct = await this.useCase.execute(guid);
 
             response.status(HttpStatusCode.OK).json(deleteProduct);
         } catch (error) {

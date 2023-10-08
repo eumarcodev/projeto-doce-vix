@@ -3,7 +3,6 @@ import { ICategory } from "../model/ICategory";
 import { ICategoryRepository } from "../repositories/ICategoryRepository";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { IRequest } from "@/modules/product/services/validation/DeleteProductService";
 
 export class DeleteCategoryService implements IService<string, ICategory> {
     constructor(private readonly repository: ICategoryRepository) {}
@@ -22,4 +21,3 @@ export class DeleteCategoryService implements IService<string, ICategory> {
         return categoryExists;
     }
 }
-

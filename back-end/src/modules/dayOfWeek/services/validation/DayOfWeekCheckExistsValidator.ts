@@ -14,4 +14,3 @@ export class DayOfWeekCheckExistsValidator implements IValidator<string> {
             );
     }
 }
-

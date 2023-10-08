@@ -7,7 +7,8 @@ import { ProductPrismaFactory } from "../../factories/ProductPrismaFactory";
 import { ProductPrismaRepository } from "../../repositories/implementations/ProductRepository";
 import { UpdateProductUseCase } from "./UpdateProductUseCase";
 import { UpdateProductController } from "./UpdateProductController";
-import { UpdateProductService } from "../../services/validation/UpdateProductService";
+import { UpdateProductService } from "../../services/UpdateProductService";
+import { UpdateProductValidator } from "../../services/validation/UpdateProductValidator";
 
 const productFactory = new ProductPrismaFactory();
 const productRepository = new ProductPrismaRepository(productFactory);
@@ -18,16 +19,18 @@ const categoryRepository = new CategoryPrismaRepository(categoryFactory);
 const dayOfWeekFactory = new DayOfWeekPrismaFactory();
 const dayOfWeekRepository = new DayOfWeekPrismaRepository(dayOfWeekFactory);
 
-const updateProductService = new UpdateProductService(
+const updateProductValidator = new UpdateProductValidator(
     categoryRepository,
     productRepository,
     dayOfWeekRepository,
 );
 
-const updateProductUseCase = new UpdateProductUseCase(
+const updateProductService = new UpdateProductService(
+    updateProductValidator,
     productRepository,
-    updateProductService,
 );
+
+const updateProductUseCase = new UpdateProductUseCase(updateProductService);
 const updateProductController = new UpdateProductController(
     updateProductUseCase,
 );

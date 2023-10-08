@@ -12,7 +12,6 @@ class CheckCategoryExistsController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-
             const { name } = request.params;
 
             const category = await this.useCase.execute({ name });
@@ -23,6 +22,5 @@ class CheckCategoryExistsController implements IController {
         }
     }
 }
-
 
 export { CheckCategoryExistsController };

@@ -10,15 +10,20 @@ export class CreateCategoryValidator implements IValidator<ICreateCategoryDTO> {
     constructor(private readonly repository: ICategoryRepository) {}
 
     async validate(data: ICreateCategoryDTO): Promise<void> {
-        const { name } = data;
+        const { name, description } = data;
+
+        if (!description)
+            throw new ErrorHandler(
+                "description is required",
+                HttpStatusCode.CONFLICT,
+            );
 
         const categoryExists = await this.repository.findByName(name);
 
-        if (categoryExists)
+        if (!categoryExists)
             throw new ErrorHandler(
-                "Category already exists",
+                "Category not found",
                 HttpStatusCode.CONFLICT,
             );
     }
 }
-

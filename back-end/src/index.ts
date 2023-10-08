@@ -8,6 +8,8 @@ import { categoryRoutes } from "./routes/categories.routes";
 import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
 import { productRoutes } from "./routes/product.routes";
 import { envs } from "./shared/envs";
+import { userRoutes } from "./routes/users.routes";
+import { authRoutes } from "./routes/auth.routes";
 
 dotenv.config();
 const app = express();
@@ -22,9 +24,11 @@ app.get("/", (req, res) => {
     });
 });
 
+app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
+app.use("/login", authRoutes);
 
 if (envs.nodeEnv === "development") {
     app.use(

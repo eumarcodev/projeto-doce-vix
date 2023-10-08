@@ -123,7 +123,7 @@ class CategoryPrismaRepository implements ICategoryRepository {
 
         const categories = await Promise.all(
             categoriesP.map(async (categoryP) => {
-                return await this.categoryPrismaFactory.generate(categoryP);
+                return  this.categoryPrismaFactory.generate(categoryP);
             }),
         );
 

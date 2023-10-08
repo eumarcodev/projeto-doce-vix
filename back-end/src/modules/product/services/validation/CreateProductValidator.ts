@@ -10,13 +10,7 @@ import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 export class CreateProductValidator implements IValidator<ICreateProductDTO> {
     constructor(private readonly repository: IProductRepository) {}
 
-    async validate({
-        name,
-        description,
-        price,
-        categoryName,
-        dayOfWeek,
-    }: ICreateProductDTO): Promise<void> {
+    async validate({ name }: ICreateProductDTO): Promise<void> {
         const productExists = await this.repository.findByName(name);
         if (productExists)
             throw new ErrorHandler(
@@ -25,4 +19,3 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
             );
     }
 }
-

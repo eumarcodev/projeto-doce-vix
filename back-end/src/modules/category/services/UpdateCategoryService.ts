@@ -6,47 +6,38 @@ import {
 } from "../repositories/ICategoryRepository";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { CreateProductValidator } from "@/modules/product/services/validation/CreateProductValidator";
-import { CreateCategoryValidator } from "./validation/CreateCategoryValidate";
+import { UpdateCategoryValidator } from "./validation/UpdateCategoryValidate";
 
 export class UpdateCategoryService
     implements IService<IUpdateCategoryDTO, ICategory>
 {
-    constructor(private readonly repository: ICategoryRepository) {}
+    constructor(
+        private readonly repository: ICategoryRepository,
+        private readonly updateCategoryService: UpdateCategoryValidator,
+    ) {}
     async execute({
         guid,
         name,
         description,
     }: IUpdateCategoryDTO): Promise<ICategory> {
-        const categoryExists = await this.repository.findByGuid(guid);
-
-        if (!categoryExists)
-            throw new ErrorHandler(
-                "Category not found",
-                HttpStatusCode.NOT_FOUND,
-            );
-
-        const categoryExistsByName = await this.repository.findByName(name);
-
-        if (categoryExistsByName)
-            throw new ErrorHandler(
-                "Category already exists",
-                HttpStatusCode.CONFLICT,
-            );
-
-        const newCategory = await this.repository.update({
+        await this.updateCategoryService.validate({
             guid,
             name,
             description,
         });
 
-        if (!newCategory)
+        const category = await this.repository.update({
+            guid,
+            name,
+            description,
+        });
+
+        if (!category)
             throw new ErrorHandler(
-                "Error on update category",
+                "Error on update product",
                 HttpStatusCode.BAD_REQUEST,
             );
 
-        return newCategory;
+        return category;
     }
 }
-

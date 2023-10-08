@@ -40,4 +40,3 @@ const createProductController = new CreateProductController(
 );
 
 export { createProductController };
-

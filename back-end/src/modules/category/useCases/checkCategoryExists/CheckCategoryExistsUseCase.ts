@@ -24,4 +24,3 @@ export class CheckCategoryExistsUseCase
         return category;
     }
 }
-

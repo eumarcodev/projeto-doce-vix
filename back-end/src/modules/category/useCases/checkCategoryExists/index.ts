@@ -1,5 +1,5 @@
 import { CategoryPrismaFactory } from "../../factories/CategoryPrismaFactory";
-import { CategoryPrismaRepository } from "../../repositories/implementations/CategoryPrismaRepository";
+import { CategoryPrismaRepository } from "../../repositories/implementations/CategoryRepository";
 import { CheckCategoryExistsController } from "./CheckCategoryExistsController";
 import { CheckCategoryExistsUseCase } from "./CheckCategoryExistsUseCase";
 

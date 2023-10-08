@@ -2,19 +2,21 @@ POST http://localhost:3333/products HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "X GIANNswssww",
+  "name": "X GIANNswsswdddw",
   "description": "Pao, LINGUIÇA SALAMITO, maionese e salada ",
   "categoryName": "Bebidas",
   "price": 26,
   "dayOfWeek": "Segunda"
 }
 
+
+
 ###
 GET http://localhost:3333/products HTTP/1.1
 
 ####
 
-DELETE http://localhost:3333/products/9f85cc4f-99744051-b759-33352c833dbf HTTP/1.1
+DELETE http://localhost:3333/products/4f1fb1e3-f4=09-431c-9b81-570cb611bd70 HTTP/1.1
 
 
 ###
@@ -23,9 +25,7 @@ Content-Type: application/json
 
 {
     "guid": "4f1fb1e3-f409-431c-9b81-570cb611bd70",
-    "name": "X ddddddddd",
-    "description": "Pao, LINGUIÇA SALAMITO, maionese e salada ",
-    "price": 26,
-    "categoryName": "Bolos",
-    "dayOfWeek": "Sextda"
+    "description": "Pao",
+     "price": 264,
+     "dayOfWeek": "Terça"
 }

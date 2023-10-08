@@ -25,4 +25,3 @@ class DeleteCategoryController implements IController {
 }
 
 export { DeleteCategoryController };
-
