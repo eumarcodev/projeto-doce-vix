@@ -7,7 +7,7 @@ import { Router } from "express";
 
 const productRoutes = Router();
 
-productRoutes.get("/", getToken, (request, response, next) => {
+productRoutes.get("/",  getToken, (request, response, next) => {
     return listProductsController.handle(request, response, next);
 });
 

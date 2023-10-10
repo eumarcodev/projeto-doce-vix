@@ -3,7 +3,7 @@ import { UserPrismaRepository } from "../../repositories/implementations/UserPri
 import { UpdateUserUsecase } from "./UpdateUserUseCase";
 import { UpdateUserController } from "./UpdateUserController";
 import { UpdateUserValidator } from "../../services/validation/UpdateUserValidator";
-import { UpdateUserService } from "../../services/UpdateUserService";
+import { UpdateUserService } from "../../services/usersServices/UpdateUserService";
 import { BcryptAdapter } from "@/shared/infra/adapters/cryptography/implementations/BcryptAdapter";
 import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
 
