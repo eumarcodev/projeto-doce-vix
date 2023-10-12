@@ -11,7 +11,7 @@ import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvi
 
 export interface IRequest {
     email: string;
-    encryptedPassword: string;
+    password: string;
 }
 
 export class AuthUserService
@@ -25,13 +25,13 @@ export class AuthUserService
         private readonly tokenProvider: ITokenProvider,
     ) {}
 
-    async execute({ email, encryptedPassword }: IRequest): Promise<{
+    async execute({ email, password }: IRequest): Promise<{
         token: string;
         refreshToken: IRefreshToken;
     }> {
         await this.authUserValidator.validate({
             email,
-            encryptedPassword,
+            password,
         });
 
         const userExists = await this.repository.findByMail(email);
@@ -44,9 +44,9 @@ export class AuthUserService
 
         const token = await this.tokenProvider.generateToken(
             userExists.id,
-            "10s",
+            "10d",
         );
-        const expireIn = dayjs().add(14, "second").unix();
+        const expireIn = dayjs().add(14, "second").toDate();
         const refreshToken = await this.refreshTokenRepository.save({
             userId: userExists.id,
             expireIn,

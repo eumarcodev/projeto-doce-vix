@@ -48,17 +48,29 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
     async save({
         userId,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined> {
-        const expireIn = dayjs().add(12, "second").unix();
+        const expireIn = dayjs().add(12, "second").toDate();
         const refreshTokenP = await this.prismaClient.refreshToken.create({
-            data: {
+            data: { 
                 userId,
                 expireIn,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                
             },
         });
 
         if (!refreshTokenP) return undefined;
 
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
+    }
+
+    async deleteAll(userId: number): Promise<void>{
+        await this.prismaClient.refreshToken.deleteMany({
+            where: {
+                userId
+            }
+        })
+        
     }
 }
 

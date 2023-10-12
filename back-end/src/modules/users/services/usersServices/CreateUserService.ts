@@ -17,20 +17,20 @@ export class CreateUserService implements IService<ICreateUserDTO, IUser> {
     async execute({
         name,
         email,
-        encryptedPassword,
+        password,
     }: ICreateUserDTO): Promise<IUser> {
         await this.createUserValidator.validate({
             name,
             email,
-            encryptedPassword,
+            password,
         });
         const encryptedpassword =
-            await this.cryptography.encrypt(encryptedPassword);
+            await this.cryptography.encrypt(password);
 
         const user = await this.repository.create({
             name,
             email,
-            encryptedPassword: encryptedpassword,
+            password: encryptedpassword,
         });
 
         if (!user)

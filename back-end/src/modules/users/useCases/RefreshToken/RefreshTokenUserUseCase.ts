@@ -1,5 +1,5 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-import { RefreshTokenService } from "../../services/usersServices/RefreshTokenService";
+import { RefreshTokenService } from "../../services/tokenServices/RefreshTokenService";
 
 export class RefreshTokenUserUseCase implements IUseCase<number, string> {
     constructor(private readonly refreshTokenService: RefreshTokenService) {}

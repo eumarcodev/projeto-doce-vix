@@ -2,7 +2,7 @@ import { IRefreshToken } from "../model/IRefreshToken";
 
 interface ISaveRefreshTokenDTO {
     userId: number;
-    expireIn: number;
+    expireIn: Date;
 }
 
 interface IRefreshTokenRepository {
@@ -12,6 +12,7 @@ interface IRefreshTokenRepository {
         userId,
         expireIn,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined>;
+    deleteAll(userId: number): Promise<void>;
 }
 
 export { IRefreshTokenRepository, ISaveRefreshTokenDTO };

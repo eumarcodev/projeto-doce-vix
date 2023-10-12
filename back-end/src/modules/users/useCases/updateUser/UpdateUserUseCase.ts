@@ -10,13 +10,13 @@ export class UpdateUserUsecase implements IUseCase<IUpdateUserDTO, IUser> {
         guid,
         name,
         email,
-        encryptedPassword,
+        password,
     }: IUpdateUserDTO): Promise<IUser> {
         return this.updateUserService.execute({
             guid,
             name,
             email,
-            encryptedPassword,
+            password,
         });
     }
 }

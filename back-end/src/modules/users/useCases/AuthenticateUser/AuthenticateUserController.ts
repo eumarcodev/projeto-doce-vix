@@ -14,11 +14,11 @@ class AuthenticateUserController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { email, encryptedPassword } = request.body;
+            const { email, password } = request.body;
 
             const user = await this.useCase.execute({
                 email,
-                encryptedPassword,
+                password,
             });
 
             return response.status(HttpStatusCode.CREATED).json(user);

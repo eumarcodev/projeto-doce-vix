@@ -12,7 +12,7 @@ export class UserPrismaFactory implements IDefaultFactory<IUserPrisma, IUser> {
             guid: entity.guid,
             name: entity.name,
             email: entity.email,
-            password: entity.encryptedPassword,
+            password: entity.password,
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
         };

@@ -3,14 +3,14 @@ import { IUser } from "../model/IUser";
 interface ICreateUserDTO {
     name: string;
     email: string;
-    encryptedPassword: string;
+    password: string;
 }
 
 interface IUpdateUserDTO {
     guid: string;
     name?: string;
     email?: string;
-    encryptedPassword: string;
+    password: string;
 }
 
 interface IListUsersResponse {
@@ -29,13 +29,13 @@ interface IUserRepository {
     create({
         name,
         email,
-        encryptedPassword,
+        password,
     }: ICreateUserDTO): Promise<IUser | undefined>;
     update({
         guid,
         name,
         email,
-        encryptedPassword,
+        password,
     }: IUpdateUserDTO): Promise<IUser | undefined>;
     list({
         search,

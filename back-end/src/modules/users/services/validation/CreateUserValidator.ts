@@ -11,7 +11,13 @@ export class CreateUserValidator implements IValidator<ICreateUserDTO> {
     constructor(private readonly userRepository: IUserRepository) {}
 
     async validate(data: ICreateUserDTO): Promise<void> {
-        const { name, email, encryptedPassword } = data;
+        const { name, email, password } = data;
+
+        if (!email)
+            throw new ErrorHandler(
+                "email is required",
+                HttpStatusCode.BAD_REQUEST,
+            );
 
         if (!name)
             throw new ErrorHandler(
@@ -26,12 +32,12 @@ export class CreateUserValidator implements IValidator<ICreateUserDTO> {
                 HttpStatusCode.CONFLICT,
             );
 
-        if (!encryptedPassword)
+        if (!password)
             throw new ErrorHandler(
                 "Password is required",
                 HttpStatusCode.BAD_REQUEST,
             );
 
-        await passwordSchema.validate(encryptedPassword);
+        await passwordSchema.validate(password);
     }
 }

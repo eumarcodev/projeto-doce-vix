@@ -1,6 +1,6 @@
 import { RefreshTokenUserUseCase } from "./RefreshTokenUserUseCase";
 import { RefreshTokenUserController } from "./RefreshTokenUserController";
-import { RefreshTokenService } from "../../services/usersServices/RefreshTokenService";
+import { RefreshTokenService } from "../../services/tokenServices/RefreshTokenService";
 import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
 import { RefreshTokenPrismaFactory } from "../../factories/RefreshTokenPrismaFactory";
 import { JwtTokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";

@@ -2,145 +2,147 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Category {
-    id          Int       @id @default(autoincrement())
-    guid        String    @unique @default(uuid())
-    name        String
-    description String
-    Product     Product[]
-    File        File?     @relation(fields: [fileId], references: [id])
-    fileId      Int?
-    createdAt   DateTime
-    updatedAt   DateTime
+  id          Int       @id @default(autoincrement())
+  guid        String    @unique @default(uuid())
+  name        String
+  description String
+  Product     Product[]
+  File        File?     @relation(fields: [fileId], references: [id])
+  fileId      Int?
+  createdAt   DateTime
+  updatedAt   DateTime
 }
 
 model File {
-    id        Int        @id @default(autoincrement())
-    guid      String     @unique @default(uuid())
-    path      String
-    Category  Category[]
-    Product   Product[]
-    createdAt DateTime
-    updatedAt DateTime
+  id        Int        @id @default(autoincrement())
+  guid      String     @unique @default(uuid())
+  path      String
+  Category  Category[]
+  Product   Product[]
+  createdAt DateTime
+  updatedAt DateTime
 }
 
 model Product {
-    id          Int        @id @default(autoincrement())
-    guid        String     @unique @default(uuid())
-    name        String
-    description String
-    price       Float
-    categoryId  Int
-    category    Category   @relation(fields: [categoryId], references: [id])
-    files       File?      @relation(fields: [fileId], references: [id])
-    fileId      Int?
-    createdAt   DateTime
-    updatedAt   DateTime
-    DayOfWeek   DayOfWeek? @relation(fields: [dayOfWeekId], references: [id])
-    dayOfWeekId Int?
+  id          Int        @id @default(autoincrement())
+  guid        String     @unique @default(uuid())
+  name        String
+  description String
+  price       Float
+  categoryId  Int
+  category    Category   @relation(fields: [categoryId], references: [id])
+  files       File?      @relation(fields: [fileId], references: [id])
+  fileId      Int?
+  createdAt   DateTime
+  updatedAt   DateTime
+  DayOfWeek   DayOfWeek? @relation(fields: [dayOfWeekId], references: [id])
+  dayOfWeekId Int?
 }
 
 model DayOfWeek {
-    id        Int       @id @default(autoincrement())
-    guid      String    @unique @default(uuid())
-    name      String
-    createdAt DateTime
-    updatedAt DateTime
-    Product   Product[]
+  id        Int       @id @default(autoincrement())
+  guid      String    @unique @default(uuid())
+  name      String
+  createdAt DateTime
+  updatedAt DateTime
+  Product   Product[]
 }
 
 model User {
-    id                Int                @id @default(autoincrement())
-    guid              String             @unique @default(uuid())
-    name              String
-    email             String
-    encryptedPassword String
-    isActive          Boolean            @default(false)
-    Users_role        UsersRole[]
-    Users_permissions UsersPermissions[]
-    createdAt         DateTime
-    updatedAt         DateTime
-    RefreshToken      RefreshToken[]
+  id                Int                @id @default(autoincrement())
+  guid              String             @unique @default(uuid())
+  name              String
+  email             String
+  password          String
+  isActive          Boolean            @default(false)
+  Users_role        UsersRole[]
+  Users_permissions UsersPermissions[]
+  createdAt         DateTime
+  updatedAt         DateTime
+  RefreshToken      RefreshToken[]
 
-    @@map("users")
+  @@map("users")
 }
 
 model RefreshToken {
-    id       Int    @id @default(autoincrement())
-    guid     String @unique @default(uuid())
-    userId   Int
-    user     User   @relation(fields: [userId], references: [id])
-    expireIn Int
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  expireIn  DateTime
+  createdAt DateTime
+  updatedAt DateTime
 
-    @@map("refresh_token")
+  @@map("refresh_token")
 }
 
 model Role {
-    id                Int                @id @default(autoincrement())
-    guid              String             @unique @default(uuid())
-    name              String
-    description       String
-    Users_role        UsersRole[]
-    permissions_roles permissionsRoles[]
-    createdAt         DateTime
-    updatedAt         DateTime
+  id                Int                @id @default(autoincrement())
+  guid              String             @unique @default(uuid())
+  name              String
+  description       String
+  Users_role        UsersRole[]
+  permissions_roles permissionsRoles[]
+  createdAt         DateTime
+  updatedAt         DateTime
 
-    @@map("roles")
+  @@map("roles")
 }
 
 model Permission {
-    id                Int                @id @default(autoincrement())
-    guid              String             @unique @default(uuid())
-    name              String
-    description       String
-    Users_permissions UsersPermissions[]
-    permissions_roles permissionsRoles[]
-    createdAt         DateTime
-    updatedAt         DateTime
+  id                Int                @id @default(autoincrement())
+  guid              String             @unique @default(uuid())
+  name              String
+  description       String
+  Users_permissions UsersPermissions[]
+  permissions_roles permissionsRoles[]
+  createdAt         DateTime
+  updatedAt         DateTime
 
-    @@map("permissions")
+  @@map("permissions")
 }
 
 model UsersRole {
-    id        Int      @id @default(autoincrement())
-    userId    Int
-    user      User     @relation(fields: [userId], references: [id])
-    roleId    Int
-    role      Role     @relation(fields: [roleId], references: [id])
-    createdAt DateTime
-    updatedAt DateTime
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+  createdAt DateTime
+  updatedAt DateTime
 
-    @@map("users_roles")
+  @@map("users_roles")
 }
 
 model UsersPermissions {
-    id           Int        @id @default(autoincrement())
-    userId       Int
-    user         User       @relation(fields: [userId], references: [id])
-    permissionId Int
-    permission   Permission @relation(fields: [permissionId], references: [id])
-    createdAt    DateTime
-    updatedAt    DateTime
+  id           Int        @id @default(autoincrement())
+  userId       Int
+  user         User       @relation(fields: [userId], references: [id])
+  permissionId Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  createdAt    DateTime
+  updatedAt    DateTime
 
-    @@map("users_permissions")
+  @@map("users_permissions")
 }
 
 model permissionsRoles {
-    id           Int        @id @default(autoincrement())
-    roleId       Int
-    role         Role       @relation(fields: [roleId], references: [id])
-    permissionId Int
-    permission   Permission @relation(fields: [permissionId], references: [id])
-    createdAt    DateTime
-    updatedAt    DateTime
+  id           Int        @id @default(autoincrement())
+  roleId       Int
+  role         Role       @relation(fields: [roleId], references: [id])
+  permissionId Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  createdAt    DateTime
+  updatedAt    DateTime
 
-    @@map("permissions_roles")
+  @@map("permissions_roles")
 }

@@ -6,7 +6,7 @@ import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptograph
 
 interface IRequest {
     email: string;
-    encryptedPassword: string;
+    password: string;
 }
 
 export class AuthUserValidator implements IValidator<IRequest> {
@@ -16,7 +16,7 @@ export class AuthUserValidator implements IValidator<IRequest> {
     ) {}
 
     async validate(data: IRequest): Promise<void> {
-        const { email, encryptedPassword } = data;
+        const { email, password } = data;
 
         const userExists = await this.repository.findByMail(email);
 
@@ -27,7 +27,7 @@ export class AuthUserValidator implements IValidator<IRequest> {
             );
 
         const passwordMatch = await this.cryptography.compare(
-            encryptedPassword,
+            password,
             userExists.password,
         );
 

@@ -13,13 +13,13 @@ class UpdateUserController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { guid, name, email, encryptedPassword } = request.body;
+            const { guid, name, email, password } = request.body;
 
             const user = await this.useCase.execute({
                 guid,
                 name,
                 email,
-                encryptedPassword,
+                password,
             });
 
             return response.status(HttpStatusCode.CREATED).json(user);

@@ -9,12 +9,12 @@ export class CreateUserUseCase implements IUseCase<ICreateUserDTO, IUser> {
     async execute({
         name,
         email,
-        encryptedPassword,
+        password,
     }: ICreateUserDTO): Promise<IUser> {
         return this.createUserService.execute({
             name,
             email,
-            encryptedPassword,
+            password,
         });
     }
 }
