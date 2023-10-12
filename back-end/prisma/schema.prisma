@@ -62,14 +62,27 @@ model User {
   guid              String             @unique @default(uuid())
   name              String
   email             String
-  encryptedPassword String
+  password          String
   isActive          Boolean            @default(false)
   Users_role        UsersRole[]
   Users_permissions UsersPermissions[]
   createdAt         DateTime
   updatedAt         DateTime
+  RefreshToken      RefreshToken[]
 
   @@map("users")
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  expireIn  DateTime
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("refresh_token")
 }
 
 model Role {

@@ -1,7 +1,7 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
 import { IUpdateUserDTO } from "../../repositories/IUserRepository";
 import { IUser } from "../../model/IUser";
-import { UpdateUserService } from "../../services/UpdateUserService";
+import { UpdateUserService } from "../../services/usersServices/UpdateUserService";
 
 export class UpdateUserUsecase implements IUseCase<IUpdateUserDTO, IUser> {
     constructor(private readonly updateUserService: UpdateUserService) {}
@@ -10,13 +10,13 @@ export class UpdateUserUsecase implements IUseCase<IUpdateUserDTO, IUser> {
         guid,
         name,
         email,
-        encryptedPassword,
+        password,
     }: IUpdateUserDTO): Promise<IUser> {
         return this.updateUserService.execute({
             guid,
             name,
             email,
-            encryptedPassword,
+            password,
         });
     }
 }

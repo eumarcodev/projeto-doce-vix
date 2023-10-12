@@ -14,12 +14,12 @@ class CreateUserController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { name, email, encryptedPassword } = request.body;
+            const { name, email, password } = request.body;
 
             const user = await this.useCase.execute({
                 name,
                 email,
-                encryptedPassword,
+                password,
             });
 
             return response.status(HttpStatusCode.CREATED).json(user);

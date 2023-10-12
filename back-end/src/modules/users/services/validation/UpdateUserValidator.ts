@@ -15,7 +15,7 @@ export class UpdateUserValidator implements IValidator<IUpdateUserDTO> {
     ) {}
 
     async validate(data: IUpdateUserDTO): Promise<void> {
-        const { guid, email, encryptedPassword } = data;
+        const { guid, email, password } = data;
 
         if (!guid)
             throw new ErrorHandler(
@@ -37,11 +37,11 @@ export class UpdateUserValidator implements IValidator<IUpdateUserDTO> {
                     HttpStatusCode.CONFLICT,
                 );
         }
-        if (!encryptedPassword)
+        if (!password)
             throw new ErrorHandler(
                 "password is required",
                 HttpStatusCode.BAD_REQUEST,
             );
-        await passwordSchema.validate(encryptedPassword);
+        await passwordSchema.validate(password);
     }
 }

@@ -35,13 +35,13 @@ class UserPrismaRepository implements IUserRepository {
     async create({
         name,
         email,
-        encryptedPassword,
+        password,
     }: ICreateUserDTO): Promise<IUser | undefined> {
         const userP = await this.prismaClient.user.create({
             data: {
                 name,
                 email,
-                encryptedPassword,
+                password,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
@@ -56,7 +56,7 @@ class UserPrismaRepository implements IUserRepository {
         guid,
         name,
         email,
-        encryptedPassword,
+        password,
     }: IUpdateUserDTO): Promise<IUser | undefined> {
         const userP = await this.prismaClient.user.update({
             where: {
@@ -66,7 +66,7 @@ class UserPrismaRepository implements IUserRepository {
                 guid,
                 name,
                 email,
-                encryptedPassword,
+                password,
             },
         });
 

@@ -10,6 +10,7 @@ import { productRoutes } from "./routes/product.routes";
 import { envs } from "./shared/envs";
 import { userRoutes } from "./routes/users.routes";
 import { authRoutes } from "./routes/auth.routes";
+import { refreshRouter } from "./routes/refresh.routes";
 
 dotenv.config();
 const app = express();
@@ -29,6 +30,7 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
 app.use("/login", authRoutes);
+app.use("/refresh", refreshRouter);
 
 if (envs.nodeEnv === "development") {
     app.use(

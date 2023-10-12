@@ -1,20 +1,22 @@
 import { IValidator } from "@/shared/infra/protocols/IValidator";
-import {
-    IAuthenticateUserDTO,
-    IUserRepository,
-} from "../../repositories/IUserRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
 
-export class AuthUserValidator implements IValidator<IAuthenticateUserDTO> {
+interface IRequest {
+    email: string;
+    password: string;
+}
+
+export class AuthUserValidator implements IValidator<IRequest> {
     constructor(
         private readonly repository: IUserRepository,
         private readonly cryptography: ICriptography,
     ) {}
 
-    async validate(data: IAuthenticateUserDTO): Promise<void> {
-        const { email, encryptedPassword } = data;
+    async validate(data: IRequest): Promise<void> {
+        const { email, password } = data;
 
         const userExists = await this.repository.findByMail(email);
 
@@ -25,7 +27,7 @@ export class AuthUserValidator implements IValidator<IAuthenticateUserDTO> {
             );
 
         const passwordMatch = await this.cryptography.compare(
-            encryptedPassword,
+            password,
             userExists.password,
         );
 
