@@ -25,6 +25,7 @@ interface IListUsersRequest {
 }
 
 interface IUserRepository {
+    findById(id: number): Promise<IUser | undefined>;
     findByMail(email: string): Promise<IUser | undefined>;
     create({
         name,
@@ -42,13 +43,8 @@ interface IUserRepository {
         limit,
         offset,
     }: IListUsersRequest): Promise<IListUsersResponse | undefined>;
-    findByGuid(guid: string): Promise<IUser | undefined>;
+    findByGuid(guid: string): Promise<IUser | undefined>
 }
 
-export {
-    ICreateUserDTO,
-    IUpdateUserDTO,
-    IListUsersResponse,
-    IListUsersRequest,
-    IUserRepository,
-};
+export { ICreateUserDTO, IListUsersRequest, IListUsersResponse, IUpdateUserDTO, IUserRepository };
+

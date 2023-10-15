@@ -1,13 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
-import { IRefreshToken } from "../../model/IRefreshToken";
+import { PrismaClient } from "@prisma/client";
+import dayjs from "dayjs";
 import { IRefreshTokenPrisma } from "../../factories/RefreshTokenPrismaFactory";
+import { IRefreshToken } from "../../model/IRefreshToken";
 import {
     IRefreshTokenRepository,
     ISaveRefreshTokenDTO,
 } from "../IRefreshTokenRepository";
-import dayjs from "dayjs";
 
 class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
     private prismaClient: PrismaClient;
@@ -47,15 +47,17 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
 
     async save({
         userId,
+        role,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined> {
         const expireIn = dayjs().add(12, "second").toDate();
         const refreshTokenP = await this.prismaClient.refreshToken.create({
-            data: { 
+            data: {
                 userId,
                 expireIn,
+                role,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-                
+
             },
         });
 
@@ -64,14 +66,15 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
     }
 
-    async deleteAll(userId: number): Promise<void>{
+    async deleteAll(userId: number): Promise<void> {
         await this.prismaClient.refreshToken.deleteMany({
             where: {
                 userId
             }
         })
-        
+
     }
 }
 
 export { RefreshTokenPrismaRepository };
+

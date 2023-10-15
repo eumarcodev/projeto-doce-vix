@@ -1,13 +1,13 @@
 import { IService } from "@/shared/infra/protocols/IService";
-import { AuthUserValidator } from "../validation/AuthUserValidator";
-import { IUserRepository } from "../../repositories/IUserRepository";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
 import { IRefreshToken } from "../../model/IRefreshToken";
+import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
+import { AuthUserValidator } from "../validation/AuthUserValidator";
 
-import dayjs from "dayjs";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvider";
+import dayjs from "dayjs";
 
 export interface IRequest {
     email: string;
@@ -16,14 +16,14 @@ export interface IRequest {
 
 export class AuthUserService
     implements
-        IService<IRequest, { token: string; refreshToken: IRefreshToken }>
+    IService<IRequest, { token: string; refreshToken: IRefreshToken }>
 {
     constructor(
         private readonly authUserValidator: AuthUserValidator,
         private readonly repository: IUserRepository,
         private readonly refreshTokenRepository: IRefreshTokenRepository,
         private readonly tokenProvider: ITokenProvider,
-    ) {}
+    ) { }
 
     async execute({ email, password }: IRequest): Promise<{
         token: string;
@@ -42,14 +42,19 @@ export class AuthUserService
                 HttpStatusCode.UNAUTHORIZED,
             );
 
+
         const token = await this.tokenProvider.generateToken(
-            userExists.id,
-            "10d",
+            { userId: userExists.id, role: userExists.role },
+            "10d"
         );
+
         const expireIn = dayjs().add(14, "second").toDate();
         const refreshToken = await this.refreshTokenRepository.save({
             userId: userExists.id,
             expireIn,
+            role: userExists.role
+
+
         });
 
         if (!refreshToken)

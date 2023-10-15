@@ -1,5 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { context } from "@/shared/infra/database/Context";
+import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
+import { PrismaClient } from "@prisma/client";
+import { IUserPrisma } from "../../factories/UserPrismaFactory";
+import { IUser } from "../../model/IUser";
 import {
     ICreateUserDTO,
     IListUsersRequest,
@@ -7,9 +10,6 @@ import {
     IUpdateUserDTO,
     IUserRepository,
 } from "../IUserRepository";
-import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
-import { IUserPrisma } from "../../factories/UserPrismaFactory";
-import { IUser } from "../../model/IUser";
 
 class UserPrismaRepository implements IUserRepository {
     private prismaClient: PrismaClient;
@@ -19,6 +19,20 @@ class UserPrismaRepository implements IUserRepository {
     ) {
         this.prismaClient = context.prisma;
     }
+
+    async findById(id: number): Promise<IUser | undefined> {
+        const usersP = await this.prismaClient.user.findUnique({
+            where: {
+                id,
+            },
+        });
+
+        if (!usersP) return undefined;
+
+        return this.userPrismaFactory.generate(usersP);
+    }
+
+
 
     async findByMail(email: string): Promise<IUser | undefined> {
         const usersP = await this.prismaClient.user.findFirst({
@@ -51,6 +65,7 @@ class UserPrismaRepository implements IUserRepository {
 
         return this.userPrismaFactory.generate(userP);
     }
+
 
     async update({
         guid,
@@ -94,19 +109,19 @@ class UserPrismaRepository implements IUserRepository {
     }: IListUsersRequest): Promise<IListUsersResponse | undefined> {
         const where = search
             ? {
-                  OR: [
-                      {
-                          name: {
-                              contains: search,
-                          },
-                      },
-                      {
-                          description: {
-                              contains: search,
-                          },
-                      },
-                  ],
-              }
+                OR: [
+                    {
+                        name: {
+                            contains: search,
+                        },
+                    },
+                    {
+                        description: {
+                            contains: search,
+                        },
+                    },
+                ],
+            }
             : undefined;
 
         const count = await this.prismaClient.user.count({
@@ -147,3 +162,4 @@ class UserPrismaRepository implements IUserRepository {
 }
 
 export { UserPrismaRepository };
+

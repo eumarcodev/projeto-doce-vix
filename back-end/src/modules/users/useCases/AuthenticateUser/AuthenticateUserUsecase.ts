@@ -1,9 +1,9 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-import {
-    IRequest,
-    AuthUserService,
-} from "../../services/usersServices/AuthUserService";
 import { IRefreshToken } from "../../model/IRefreshToken";
+import {
+    AuthUserService,
+    IRequest,
+} from "../../services/usersServices/AuthUserService";
 
 export interface IResponse {
     token: string;
@@ -11,7 +11,7 @@ export interface IResponse {
 }
 
 export class AuthenticateUserUseCase implements IUseCase<IRequest, IResponse> {
-    constructor(private readonly authUserService: AuthUserService) {}
+    constructor(private readonly authUserService: AuthUserService) { }
 
     async execute({ email, password }: IRequest): Promise<IResponse> {
         return this.authUserService.execute({

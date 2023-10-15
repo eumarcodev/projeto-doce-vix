@@ -1,3 +1,5 @@
+import { ITokenProviderPayload } from "./ITokenProviderPayload";
+
 export interface ITokenProvider {
-    generateToken(userId: number, expiresIn: string | number): Promise<string>;
+    generateToken(payload: ITokenProviderPayload, expiresIn: string | number): Promise<string>;
 }

@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { NextFunction, Request, Response } from "express";
+import { JwtPayload, verify } from "jsonwebtoken";
 
 const getToken = (request: Request, response: Response, next: NextFunction) => {
     const authHeader = request.headers.authorization;
@@ -12,7 +12,8 @@ const getToken = (request: Request, response: Response, next: NextFunction) => {
     const [, token] = authHeader.split(" ");
 
     try {
-        verify(token, String(process.env.JWT_SALT));
+        const decoded = verify(token, String(process.env.JWT_SALT)) as JwtPayload;
+        request.user = decoded;
 
         return next();
     } catch (error) {
@@ -21,3 +22,4 @@ const getToken = (request: Request, response: Response, next: NextFunction) => {
 };
 
 export { getToken };
+

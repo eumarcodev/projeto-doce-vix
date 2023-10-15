@@ -58,17 +58,16 @@ model DayOfWeek {
 }
 
 model User {
-  id                Int                @id @default(autoincrement())
-  guid              String             @unique @default(uuid())
-  name              String
-  email             String
-  password          String
-  isActive          Boolean            @default(false)
-  Users_role        UsersRole[]
-  Users_permissions UsersPermissions[]
-  createdAt         DateTime
-  updatedAt         DateTime
-  RefreshToken      RefreshToken[]
+  id           Int            @id @default(autoincrement())
+  guid         String         @unique @default(uuid())
+  name         String
+  email        String
+  password     String
+  isActive     Boolean        @default(true)
+  role         UserRole       @default(USER)
+  createdAt    DateTime
+  updatedAt    DateTime
+  RefreshToken RefreshToken[]
 
   @@map("users")
 }
@@ -79,70 +78,14 @@ model RefreshToken {
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   expireIn  DateTime
+  role      String
   createdAt DateTime
   updatedAt DateTime
 
   @@map("refresh_token")
 }
 
-model Role {
-  id                Int                @id @default(autoincrement())
-  guid              String             @unique @default(uuid())
-  name              String
-  description       String
-  Users_role        UsersRole[]
-  permissions_roles permissionsRoles[]
-  createdAt         DateTime
-  updatedAt         DateTime
-
-  @@map("roles")
-}
-
-model Permission {
-  id                Int                @id @default(autoincrement())
-  guid              String             @unique @default(uuid())
-  name              String
-  description       String
-  Users_permissions UsersPermissions[]
-  permissions_roles permissionsRoles[]
-  createdAt         DateTime
-  updatedAt         DateTime
-
-  @@map("permissions")
-}
-
-model UsersRole {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  roleId    Int
-  role      Role     @relation(fields: [roleId], references: [id])
-  createdAt DateTime
-  updatedAt DateTime
-
-  @@map("users_roles")
-}
-
-model UsersPermissions {
-  id           Int        @id @default(autoincrement())
-  userId       Int
-  user         User       @relation(fields: [userId], references: [id])
-  permissionId Int
-  permission   Permission @relation(fields: [permissionId], references: [id])
-  createdAt    DateTime
-  updatedAt    DateTime
-
-  @@map("users_permissions")
-}
-
-model permissionsRoles {
-  id           Int        @id @default(autoincrement())
-  roleId       Int
-  role         Role       @relation(fields: [roleId], references: [id])
-  permissionId Int
-  permission   Permission @relation(fields: [permissionId], references: [id])
-  createdAt    DateTime
-  updatedAt    DateTime
-
-  @@map("permissions_roles")
+enum UserRole {
+  ADMIN
+  USER
 }
