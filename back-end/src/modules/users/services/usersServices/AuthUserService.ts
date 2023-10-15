@@ -45,7 +45,7 @@ export class AuthUserService
 
         const token = await this.tokenProvider.generateToken(
             { userId: userExists.id, role: userExists.role },
-            "10d"
+            "60s"
         );
 
         const expireIn = dayjs().add(14, "second").toDate();

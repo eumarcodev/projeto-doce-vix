@@ -2,7 +2,7 @@ import { sign } from "jsonwebtoken";
 import { ITokenProvider } from "../ITokenProvider";
 import { ITokenProviderPayload } from "../ITokenProviderPayload";
 
-export class JwtTokenProvider implements ITokenProvider {
+export class TokenProvider implements ITokenProvider {
     async generateToken(
         payload: ITokenProviderPayload,
         expiresIn: string | number,

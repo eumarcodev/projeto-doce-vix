@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { createUserController } from "@/modules/users/useCases/Createuser";
-import { updateUserController } from "@/modules/users/useCases/updateUser";
-import { listUsersController } from "@/modules/users/useCases/listUsers";
 import { authUserController } from "@/modules/users/useCases/AuthenticateUser";
+import { createUserController } from "@/modules/users/useCases/Createuser";
+import { listUsersController } from "@/modules/users/useCases/listUsers";
+import { updateUserController } from "@/modules/users/useCases/updateUser";
+import { Router } from "express";
 
 const userRoutes = Router();
 
@@ -23,3 +23,4 @@ userRoutes.post("/", (request, response, next) => {
 });
 
 export { userRoutes };
+

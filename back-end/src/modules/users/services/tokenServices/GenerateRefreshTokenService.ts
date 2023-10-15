@@ -13,14 +13,14 @@ export class GenerateRefreshTokenService
     constructor(private readonly repository: IRefreshTokenRepository) { }
 
     async execute({
+        role,
         userId,
         expireIn,
-        role,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken> {
         const token = await this.repository.save({
+            role,
             userId,
             expireIn,
-            role,
         });
 
         if (!token)

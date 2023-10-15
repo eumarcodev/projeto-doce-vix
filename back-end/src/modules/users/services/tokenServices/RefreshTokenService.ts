@@ -27,7 +27,7 @@ export class RefreshTokenService implements IService<number, { token: string; re
             role: refreshToken.role
         };
 
-        const token = await this.tokenProvider.generateToken(tokenPayload, "10d");
+        const token = await this.tokenProvider.generateToken(tokenPayload, "60s");
 
         const refreshTokenExpired = dayjs().isAfter(dayjs(refreshToken.expireIn));
 
@@ -36,7 +36,7 @@ export class RefreshTokenService implements IService<number, { token: string; re
 
         if (refreshTokenExpired) {
             await this.repository.deleteAll(refreshToken.userId)
-            const newRefreshTokenExpireIn = dayjs().add(10, 'days').toDate();
+            const newRefreshTokenExpireIn = dayjs().add(1, 'day').toDate();
 
             const newRefreshToken = await this.repository.save({
                 userId: refreshToken.userId,

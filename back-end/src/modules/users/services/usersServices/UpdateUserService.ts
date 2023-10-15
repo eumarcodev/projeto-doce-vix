@@ -1,42 +1,41 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
 import { IService } from "@/shared/infra/protocols/IService";
+import { IUser } from "../../model/IUser";
 import {
     IUpdateUserDTO,
     IUserRepository,
 } from "../../repositories/IUserRepository";
-import { IUser } from "../../model/IUser";
 import { UpdateUserValidator } from "../validation/UpdateUserValidator";
-import { BcryptAdapter } from "@/shared/infra/adapters/cryptography/implementations/BcryptAdapter";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
 
 export class UpdateUserService implements IService<IUpdateUserDTO, IUser> {
     constructor(
         private readonly updateUserValidator: UpdateUserValidator,
         private readonly repository: IUserRepository,
         private readonly cryptography: ICriptography,
-    ) {}
+    ) { }
 
     async execute({
         guid,
         name,
         email,
-        encryptedPassword,
+        password,
     }: IUpdateUserDTO): Promise<IUser> {
         await this.updateUserValidator.validate({
             guid,
             email,
-            encryptedPassword,
+            password,
         });
 
         const encryptedpassword =
-            await this.cryptography.encrypt(encryptedPassword);
+            await this.cryptography.encrypt(password);
 
         const user = await this.repository.update({
             guid,
             name,
             email,
-            encryptedPassword: encryptedpassword,
+            password: encryptedpassword,
         });
 
         if (!user)

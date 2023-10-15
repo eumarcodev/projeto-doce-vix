@@ -1,9 +1,9 @@
 import { IRefreshToken } from "../model/IRefreshToken";
 
 interface ISaveRefreshTokenDTO {
+    role: string;
     userId: number;
     expireIn: Date;
-    role: string
 }
 
 interface IRefreshTokenRepository {

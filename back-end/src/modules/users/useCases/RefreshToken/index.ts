@@ -1,11 +1,11 @@
-import { RefreshTokenUserUseCase } from "./RefreshTokenUserUseCase";
-import { RefreshTokenUserController } from "./RefreshTokenUserController";
-import { RefreshTokenService } from "../../services/tokenServices/RefreshTokenService";
-import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
+import { TokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";
 import { RefreshTokenPrismaFactory } from "../../factories/RefreshTokenPrismaFactory";
-import { JwtTokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";
+import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
+import { RefreshTokenService } from "../../services/tokenServices/RefreshTokenService";
+import { RefreshTokenUserController } from "./RefreshTokenUserController";
+import { RefreshTokenUserUseCase } from "./RefreshTokenUserUseCase";
 
-const tokenProvider = new JwtTokenProvider();
+const tokenProvider = new TokenProvider();
 
 const refreshFactory = new RefreshTokenPrismaFactory();
 const refreshRepository = new RefreshTokenPrismaRepository(refreshFactory);
@@ -20,3 +20,4 @@ const refreshTokenController = new RefreshTokenUserController(
 );
 
 export { refreshTokenController };
+

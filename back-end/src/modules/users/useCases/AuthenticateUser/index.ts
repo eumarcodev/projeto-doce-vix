@@ -1,16 +1,16 @@
-import { UserPrismaFactory } from "../../factories/UserPrismaFactory";
-import { UserPrismaRepository } from "../../repositories/implementations/UserPrismaRepository";
-import { RefreshTokenPrismaFactory } from "../../factories/RefreshTokenPrismaFactory";
-import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
-import { AuthenticateUserUseCase } from "./AuthenticateUserUsecase";
-import { AuthenticateUserController } from "./AuthenticateUserController";
-import { AuthUserValidator } from "../../services/validation/AuthUserValidator";
-import { AuthUserService } from "../../services/usersServices/AuthUserService";
-import { BcryptAdapter } from "@/shared/infra/adapters/cryptography/implementations/BcryptAdapter";
 import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
-import { JwtTokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";
+import { BcryptAdapter } from "@/shared/infra/adapters/cryptography/implementations/BcryptAdapter";
+import { TokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";
+import { RefreshTokenPrismaFactory } from "../../factories/RefreshTokenPrismaFactory";
+import { UserPrismaFactory } from "../../factories/UserPrismaFactory";
+import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
+import { UserPrismaRepository } from "../../repositories/implementations/UserPrismaRepository";
+import { AuthUserService } from "../../services/usersServices/AuthUserService";
+import { AuthUserValidator } from "../../services/validation/AuthUserValidator";
+import { AuthenticateUserController } from "./AuthenticateUserController";
+import { AuthenticateUserUseCase } from "./AuthenticateUserUsecase";
 
-const tokenProvider = new JwtTokenProvider();
+const tokenProvider = new TokenProvider();
 
 const cryptographyAdapter: ICriptography = new BcryptAdapter();
 const userFactory = new UserPrismaFactory();
@@ -33,3 +33,4 @@ const authUserUseCase = new AuthenticateUserUseCase(authUserService);
 const authUserController = new AuthenticateUserController(authUserUseCase);
 
 export { authUserController };
+

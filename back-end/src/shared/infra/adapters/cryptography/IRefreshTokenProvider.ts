@@ -1,5 +1,5 @@
 import { IRefreshToken } from "@/modules/users/model/IRefreshToken";
 
-export interface IRefreshTokenService {
+export interface IRefreshTokenPRovider {
     generateRefreshToken(userId: number): Promise<IRefreshToken>;
 }

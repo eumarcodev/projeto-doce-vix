@@ -49,7 +49,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         userId,
         role,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined> {
-        const expireIn = dayjs().add(12, "second").toDate();
+        const expireIn = dayjs().add(60, "second").toDate();
         const refreshTokenP = await this.prismaClient.refreshToken.create({
             data: {
                 userId,
