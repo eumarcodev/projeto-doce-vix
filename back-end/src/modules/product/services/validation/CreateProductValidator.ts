@@ -1,21 +1,40 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IValidator } from "@/shared/infra/protocols/IValidator";
-import { IProduct } from "../../model/IProduct";
 import {
     ICreateProductDTO,
     IProductRepository,
 } from "../../repositories/IProductRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 export class CreateProductValidator implements IValidator<ICreateProductDTO> {
-    constructor(private readonly repository: IProductRepository) {}
+    constructor(private readonly repository: IProductRepository) { }
 
-    async validate({ name }: ICreateProductDTO): Promise<void> {
+    async validate({ name, description, price, categoryName }: ICreateProductDTO): Promise<void> {
         const productExists = await this.repository.findByName(name);
         if (productExists)
             throw new ErrorHandler(
                 "Product already exists",
                 HttpStatusCode.CONFLICT,
             );
+
+        if (!name) throw new ErrorHandler(
+            "name is missing",
+            HttpStatusCode.CONFLICT,
+        );
+
+        if (!description) throw new ErrorHandler(
+            "Description is missing",
+            HttpStatusCode.CONFLICT,
+        );
+
+        if (!price) throw new ErrorHandler(
+            "price is missing",
+            HttpStatusCode.CONFLICT,
+        );
+
+        if (!categoryName) throw new ErrorHandler(
+            "category is missing",
+            HttpStatusCode.CONFLICT,
+        );
     }
 }

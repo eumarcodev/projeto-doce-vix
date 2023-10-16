@@ -2,12 +2,12 @@ import { IService } from "@/shared/infra/protocols/IService";
 import { IRefreshToken } from "../../model/IRefreshToken";
 import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
 import { IUserRepository } from "../../repositories/IUserRepository";
-import { AuthUserValidator } from "../validation/AuthUserValidator";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvider";
 import dayjs from "dayjs";
+import { AuthUserValidator } from "./validation/AuthUserValidator";
 
 export interface IRequest {
     email: string;
@@ -48,7 +48,7 @@ export class AuthUserService
             "60s"
         );
 
-        const expireIn = dayjs().add(14, "second").toDate();
+        const expireIn = dayjs().add(Number(process.env.REFRESH_TOKEN_EXPIRATION), "day").toDate();
         const refreshToken = await this.refreshTokenRepository.save({
             userId: userExists.id,
             expireIn,

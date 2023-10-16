@@ -1,13 +1,13 @@
+import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
+import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+import { IProduct } from "../model/IProduct";
 import {
     ICreateProductDTO,
     IProductRepository,
 } from "../repositories/IProductRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
-import { IProduct } from "../model/IProduct";
-import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
 import { CreateProductValidator } from "./validation/CreateProductValidator";
 
 export class CreateProductService
@@ -18,7 +18,7 @@ export class CreateProductService
         private readonly dayOfWeekCheckExists: DayOfWeekCheckExistsValidator,
         private readonly createProductValidator: CreateProductValidator,
         private readonly productRepository: IProductRepository,
-    ) {}
+    ) { }
 
     async execute({
         name,

@@ -20,7 +20,7 @@ class UserPrismaRepository implements IUserRepository {
         this.prismaClient = context.prisma;
     }
 
-    async findById(id: number): Promise<IUser | undefined> {
+    async findById(id: string): Promise<IUser | undefined> {
         const usersP = await this.prismaClient.user.findUnique({
             where: {
                 id,

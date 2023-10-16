@@ -25,7 +25,7 @@ interface IListUsersRequest {
 }
 
 interface IUserRepository {
-    findById(id: number): Promise<IUser | undefined>;
+    findById(id: string): Promise<IUser | undefined>;
     findByMail(email: string): Promise<IUser | undefined>;
     create({
         name,
@@ -38,6 +38,7 @@ interface IUserRepository {
         email,
         password,
     }: IUpdateUserDTO): Promise<IUser | undefined>;
+    delete(guid: string): Promise<IUser | undefined>;
     list({
         search,
         limit,

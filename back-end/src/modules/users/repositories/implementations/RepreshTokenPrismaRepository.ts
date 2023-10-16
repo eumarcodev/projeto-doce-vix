@@ -1,7 +1,6 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
-import dayjs from "dayjs";
 import { IRefreshTokenPrisma } from "../../factories/RefreshTokenPrismaFactory";
 import { IRefreshToken } from "../../model/IRefreshToken";
 import {
@@ -21,7 +20,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         this.prismaClient = context.prisma;
     }
 
-    async findById(id: number): Promise<IRefreshToken | undefined> {
+    async findById(id: string): Promise<IRefreshToken | undefined> {
         const refreshTokenP = await this.prismaClient.refreshToken.findFirst({
             where: {
                 id,
@@ -33,7 +32,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
     }
 
-    async findByUserId(userId: number): Promise<IRefreshToken | undefined> {
+    async findByUserId(userId: string): Promise<IRefreshToken | undefined> {
         const refreshTokenP = await this.prismaClient.refreshToken.findFirst({
             where: {
                 userId,
@@ -48,8 +47,8 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
     async save({
         userId,
         role,
+        expireIn
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined> {
-        const expireIn = dayjs().add(60, "second").toDate();
         const refreshTokenP = await this.prismaClient.refreshToken.create({
             data: {
                 userId,
@@ -66,7 +65,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
     }
 
-    async deleteAll(userId: number): Promise<void> {
+    async deleteAll(userId: string): Promise<void> {
         await this.prismaClient.refreshToken.deleteMany({
             where: {
                 userId

@@ -1,5 +1,5 @@
 export interface ITokenProviderPayload {
-    userId: number;
+    userId: string;
     role?: string;
     [key: string]: any;
 }

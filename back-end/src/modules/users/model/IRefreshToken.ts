@@ -1,6 +1,6 @@
 export interface IRefreshToken {
-    id: number;
-    userId: number;
+    id: string;
+    userId: string;
     expireIn: Date;
     role: string
 }

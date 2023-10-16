@@ -2,19 +2,19 @@ import { IRefreshToken } from "../model/IRefreshToken";
 
 interface ISaveRefreshTokenDTO {
     role: string;
-    userId: number;
+    userId: string;
     expireIn: Date;
 }
 
 interface IRefreshTokenRepository {
-    findById(id: number): Promise<IRefreshToken | undefined>;
-    findByUserId(userId: number): Promise<IRefreshToken | undefined>;
+    findById(id: string): Promise<IRefreshToken | undefined>;
+    findByUserId(userId: string): Promise<IRefreshToken | undefined>;
     save({
         userId,
         expireIn,
         role,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined>;
-    deleteAll(userId: number): Promise<void>;
+    deleteAll(userId: string): Promise<void>;
 }
 
 export { IRefreshTokenRepository, ISaveRefreshTokenDTO };

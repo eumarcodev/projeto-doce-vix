@@ -6,7 +6,8 @@ import { UserPrismaFactory } from "../../factories/UserPrismaFactory";
 import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
 import { UserPrismaRepository } from "../../repositories/implementations/UserPrismaRepository";
 import { AuthUserService } from "../../services/usersServices/AuthUserService";
-import { AuthUserValidator } from "../../services/validation/AuthUserValidator";
+
+import { AuthUserValidator } from "../../services/usersServices/validation/AuthUserValidator";
 import { AuthenticateUserController } from "./AuthenticateUserController";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUsecase";
 

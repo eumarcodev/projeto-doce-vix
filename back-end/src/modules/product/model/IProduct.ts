@@ -2,7 +2,7 @@ import { ICategory } from "@/modules/category/model/ICategory";
 import { IDayOfWeek } from "@/modules/dayOfWeek/model/IDayOfWeek";
 
 export interface IProduct {
-    id: number;
+    id: string;
     guid: string;
     name: string;
     description: string;

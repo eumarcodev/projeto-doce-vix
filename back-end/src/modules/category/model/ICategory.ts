@@ -1,5 +1,5 @@
 export interface ICategory {
-    id: number;
+    id: string;
     guid: string;
     name: string;
     description: string;

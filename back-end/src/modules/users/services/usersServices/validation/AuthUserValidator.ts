@@ -1,8 +1,8 @@
-import { IValidator } from "@/shared/infra/protocols/IValidator";
-import { IUserRepository } from "../../repositories/IUserRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { IUserRepository } from "@/modules/users/repositories/IUserRepository";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
+import { IValidator } from "@/shared/infra/protocols/IValidator";
 
 interface IRequest {
     email: string;
@@ -13,7 +13,7 @@ export class AuthUserValidator implements IValidator<IRequest> {
     constructor(
         private readonly repository: IUserRepository,
         private readonly cryptography: ICriptography,
-    ) {}
+    ) { }
 
     async validate(data: IRequest): Promise<void> {
         const { email, password } = data;

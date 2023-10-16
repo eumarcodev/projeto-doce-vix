@@ -1,19 +1,19 @@
-import { IValidator } from "@/shared/infra/protocols/IService";
-import {
-    IUpdateProductDTO,
-    IProductRepository,
-} from "../../repositories/IProductRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ICategoryRepository } from "@/modules/category/repositories/ICategoryRepository";
 import { IDayOfWeekRepository } from "@/modules/dayOfWeek/repositories/IDayOfWeekRepository";
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { IValidator } from "@/shared/infra/protocols/IValidator";
+import {
+    IProductRepository,
+    IUpdateProductDTO,
+} from "../../repositories/IProductRepository";
 
 export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
     constructor(
         private readonly categoryRepository: ICategoryRepository,
         private readonly productRepository: IProductRepository,
         private readonly dayOfWeekRepository: IDayOfWeekRepository,
-    ) {}
+    ) { }
 
     async validate(data: IUpdateProductDTO): Promise<void> {
         const { guid, name, categoryName, dayOfWeek } = data;
@@ -24,6 +24,14 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
                 HttpStatusCode.BAD_REQUEST,
             );
         }
+
+        const productExists = await this.productRepository.findByGuid(guid);
+
+        if (!productExists)
+            throw new ErrorHandler(
+                "Product not found",
+                HttpStatusCode.NOT_FOUND,
+            );
 
         if (name) {
             const productExists = await this.productRepository.findByName(name);
@@ -58,12 +66,6 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
                 );
         }
 
-        const productExists = await this.productRepository.findByGuid(guid);
 
-        if (!productExists)
-            throw new ErrorHandler(
-                "Product not found",
-                HttpStatusCode.NOT_FOUND,
-            );
     }
 }

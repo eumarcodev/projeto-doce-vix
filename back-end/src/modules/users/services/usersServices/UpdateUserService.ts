@@ -7,7 +7,8 @@ import {
     IUpdateUserDTO,
     IUserRepository,
 } from "../../repositories/IUserRepository";
-import { UpdateUserValidator } from "../validation/UpdateUserValidator";
+import { UpdateUserValidator } from "./validation/UpdateUserValidator";
+
 
 export class UpdateUserService implements IService<IUpdateUserDTO, IUser> {
     constructor(

@@ -11,19 +11,19 @@ datasource db {
 }
 
 model Category {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(uuid())
   guid        String    @unique @default(uuid())
   name        String
   description String
   Product     Product[]
   File        File?     @relation(fields: [fileId], references: [id])
-  fileId      Int?
+  fileId      String?
   createdAt   DateTime
   updatedAt   DateTime
 }
 
 model File {
-  id        Int        @id @default(autoincrement())
+  id        String     @id @default(uuid())
   guid      String     @unique @default(uuid())
   path      String
   Category  Category[]
@@ -33,23 +33,23 @@ model File {
 }
 
 model Product {
-  id          Int        @id @default(autoincrement())
+  id          String     @id @default(uuid())
   guid        String     @unique @default(uuid())
   name        String
   description String
   price       Float
-  categoryId  Int
+  categoryId  String
   category    Category   @relation(fields: [categoryId], references: [id])
   files       File?      @relation(fields: [fileId], references: [id])
-  fileId      Int?
+  fileId      String?
   createdAt   DateTime
   updatedAt   DateTime
   dayOfWeek   DayOfWeek? @relation(fields: [dayOfWeekId], references: [id])
-  dayOfWeekId Int?
+  dayOfWeekId String?
 }
 
 model DayOfWeek {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   guid      String    @unique @default(uuid())
   name      String
   createdAt DateTime
@@ -58,7 +58,7 @@ model DayOfWeek {
 }
 
 model User {
-  id           Int            @id @default(autoincrement())
+  id           String         @id @default(uuid())
   guid         String         @unique @default(uuid())
   name         String
   email        String
@@ -73,9 +73,9 @@ model User {
 }
 
 model RefreshToken {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   guid      String   @unique @default(uuid())
-  userId    Int
+  userId    String
   user      User     @relation(fields: [userId], references: [id])
   expireIn  DateTime
   role      String
