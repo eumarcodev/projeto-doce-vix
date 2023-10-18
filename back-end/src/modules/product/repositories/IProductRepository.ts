@@ -56,9 +56,6 @@ interface IProductRepository {
 }
 
 export {
-    ICreateProductDTO,
-    IUpdateProductDTO,
-    IListProductResponse,
-    IListProductRequest,
-    IProductRepository,
+    ICreateProductDTO, IListProductRequest, IListProductResponse, IProductRepository, IUpdateProductDTO
 };
+

@@ -25,6 +25,7 @@ class ProductPrismaRepository implements IProductRepository {
                 name,
             },
             include: {
+                files: true,
                 category: true,
                 dayOfWeek: true
             }
@@ -71,6 +72,7 @@ class ProductPrismaRepository implements IProductRepository {
                 updatedAt: new Date(),
             },
             include: {
+                files: true,
                 category: true,
                 dayOfWeek: true
             }
@@ -114,6 +116,7 @@ class ProductPrismaRepository implements IProductRepository {
                 updatedAt: new Date(),
             },
             include: {
+                files: true,
                 category: true,
                 dayOfWeek: true
             }
@@ -130,8 +133,8 @@ class ProductPrismaRepository implements IProductRepository {
                 guid,
             },
             include: {
+                files: true,
                 category: true,
-
                 dayOfWeek: true
             }
         });
@@ -172,6 +175,7 @@ class ProductPrismaRepository implements IProductRepository {
             take: limit,
             skip: offset,
             include: {
+                files: true,
                 category: true,
                 dayOfWeek: true
             }
@@ -197,6 +201,7 @@ class ProductPrismaRepository implements IProductRepository {
                 guid,
             },
             include: {
+                files: true,
                 category: true,
                 dayOfWeek: true
             }

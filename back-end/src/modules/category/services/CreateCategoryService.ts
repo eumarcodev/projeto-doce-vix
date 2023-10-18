@@ -1,12 +1,12 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+import { ICategory } from "../model/ICategory";
 import {
     ICategoryRepository,
     ICreateCategoryDTO,
 } from "../repositories/ICategoryRepository";
-import { ICategory } from "../model/ICategory";
 import { CreateCategoryValidator } from "./validation/CreateCategoryValidate";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 
 export class CreateCategoryService
     implements IService<ICreateCategoryDTO, ICategory>
@@ -14,7 +14,7 @@ export class CreateCategoryService
     constructor(
         private readonly categoryRepository: ICategoryRepository,
         private readonly createCategoryValidator: CreateCategoryValidator,
-    ) {}
+    ) { }
 
     async execute({
         name,
