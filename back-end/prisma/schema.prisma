@@ -33,19 +33,20 @@ model File {
 }
 
 model Product {
-  id          String     @id @default(uuid())
-  guid        String     @unique @default(uuid())
+  id          String      @id @default(uuid())
+  guid        String      @unique @default(uuid())
   name        String
   description String
   price       Float
   categoryId  String
-  category    Category   @relation(fields: [categoryId], references: [id])
-  files       File?      @relation(fields: [fileId], references: [id])
+  category    Category    @relation(fields: [categoryId], references: [id])
+  files       File?       @relation(fields: [fileId], references: [id])
   fileId      String?
   createdAt   DateTime
   updatedAt   DateTime
-  dayOfWeek   DayOfWeek? @relation(fields: [dayOfWeekId], references: [id])
+  dayOfWeek   DayOfWeek?  @relation(fields: [dayOfWeekId], references: [id])
   dayOfWeekId String?
+  OrderItem   OrderItem[]
 }
 
 model DayOfWeek {
@@ -68,6 +69,7 @@ model User {
   createdAt    DateTime
   updatedAt    DateTime
   RefreshToken RefreshToken[]
+  Order        Order[]
 
   @@map("users")
 }
@@ -83,6 +85,38 @@ model RefreshToken {
   updatedAt DateTime
 
   @@map("refresh_token")
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  guid      String      @unique @default(uuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime
+  updatedAt DateTime
+  total     Float
+  status    OrderStatus @default(PREPARING)
+  itens     OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  guid      String   @unique @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+  createdAt DateTime
+  updatedAt DateTime
+  Order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
+}
+
+enum OrderStatus {
+  PREPARING
+  READY
 }
 
 enum UserRole {

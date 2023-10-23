@@ -70,6 +70,7 @@ class ProductPrismaRepository implements IProductRepository {
                 dayOfWeekId: dayOfWeekP?.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
+
             },
             include: {
                 files: true,
@@ -195,10 +196,10 @@ class ProductPrismaRepository implements IProductRepository {
         };
     }
 
-    async findByGuid(guid: string): Promise<IProduct | undefined> {
+    async findById(id: string): Promise<IProduct | undefined> {
         const productsP = await this.prismaClient.product.findUnique({
             where: {
-                guid,
+                id,
             },
             include: {
                 files: true,
