@@ -5,6 +5,10 @@ import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { Product as PProduct } from "@prisma/client";
 
 import { IProduct } from "../model/IProduct";
+import { IFilePrisma } from "@/modules/file/factories/FilePrismaFactory";
+import { IListFileRequest } from "@/modules/file/repositories/IFileRepository";
+import { ICategoryPrisma } from "@/modules/category/factories/CategoryPrismaFactory";
+import { IDayOfWeekPrisma } from "@/modules/dayOfWeek/factories/DayOfWeekPrismaFactory";
 
 export interface IProductPrisma
     extends Omit<PProduct, "category" | "dayOfWeek" | "file"> {
@@ -16,6 +20,7 @@ export interface IProductPrisma
 export class ProductPrismaFactory
     implements IDefaultFactory<IProductPrisma, IProduct>
 {
+
     async generate(entity: IProductPrisma): Promise<IProduct> {
         const {
             id,

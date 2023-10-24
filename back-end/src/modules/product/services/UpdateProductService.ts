@@ -21,7 +21,7 @@ export class UpdateProductService
         guid,
         name,
         description,
-        categoryName,
+        categoryGuid,
         price,
         dayOfWeek,
     }: IUpdateProductDTO): Promise<IProduct> {
@@ -29,7 +29,7 @@ export class UpdateProductService
             guid,
             name,
             description,
-            categoryName,
+            categoryGuid,
             price,
             dayOfWeek,
         });
@@ -38,7 +38,7 @@ export class UpdateProductService
             guid,
             name,
             description,
-            categoryName,
+            categoryGuid,
             price,
             dayOfWeek,
         });

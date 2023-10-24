@@ -3,3 +3,5 @@
 
 GET http://localhost:3333/products HTTP/1.1
 
+
+
