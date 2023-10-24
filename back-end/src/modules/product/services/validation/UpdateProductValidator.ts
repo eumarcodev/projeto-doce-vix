@@ -17,7 +17,7 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
     ) {}
 
     async validate(data: IUpdateProductDTO): Promise<void> {
-        const { guid, name, categoryName, dayOfWeek } = data;
+        const { guid, name, categoryGuid, dayOfWeek } = data;
 
         if (!guid) {
             throw new ErrorHandler(
@@ -44,9 +44,9 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
                 );
         }
 
-        if (categoryName) {
+        if (categoryGuid) {
             const categoryExists =
-                await this.categoryRepository.findByName(categoryName);
+                await this.categoryRepository.findByGuid(categoryGuid);
 
             if (!categoryExists) {
                 throw new ErrorHandler(

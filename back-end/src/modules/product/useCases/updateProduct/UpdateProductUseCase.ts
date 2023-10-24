@@ -13,7 +13,7 @@ export class UpdateProductUseCase
         guid,
         name,
         description,
-        categoryName,
+        categoryGuid,
         price,
         dayOfWeek,
     }: IUpdateProductDTO): Promise<IProduct> {
@@ -21,7 +21,7 @@ export class UpdateProductUseCase
             guid,
             name,
             description,
-            categoryName,
+            categoryGuid,
             price,
             dayOfWeek,
         });

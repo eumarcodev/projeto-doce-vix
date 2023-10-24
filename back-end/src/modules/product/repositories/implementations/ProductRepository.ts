@@ -87,7 +87,7 @@ class ProductPrismaRepository implements IProductRepository {
         guid,
         name,
         description,
-        categoryName,
+        categoryGuid,
         price,
         dayOfWeek,
     }: I.IUpdateProductDTO): Promise<IProduct | undefined> {
@@ -99,7 +99,7 @@ class ProductPrismaRepository implements IProductRepository {
 
         const categoryNameP = await this.prismaClient.category.findFirst({
             where: {
-                name: categoryName,
+                guid: categoryGuid,
             },
         });
 
@@ -210,6 +210,23 @@ class ProductPrismaRepository implements IProductRepository {
         if (!productsP) return undefined;
 
         return this.productPrismaFactory.generate(productsP);
+    }
+
+    async findByGuid(guid: string): Promise<IProduct | undefined> {
+        const productP = await this.prismaClient.product.findUnique({
+            where: {
+                guid: guid
+            },
+            include: {
+                files: true,
+                category: true,
+                dayOfWeek: true,
+            }
+        });
+
+        if(!productP) return undefined;
+
+        return this.productPrismaFactory.generate(productP);
     }
 }
 
