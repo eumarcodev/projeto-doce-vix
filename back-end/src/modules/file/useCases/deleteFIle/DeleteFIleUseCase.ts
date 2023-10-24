@@ -7,8 +7,8 @@ export class DeleteFileUseCase implements IUseCase<string, IFile> {
         private readonly fileRepository: IFileRepository
     ) { }
 
-    async execute(id: string): Promise<IFile> {
-        const file = await this.fileRepository.deleteFile(id);
+    async execute(guid: string): Promise<IFile> {
+        const file = await this.fileRepository.deleteFile(guid);
 
         if (!file) throw new Error("File not found");
 

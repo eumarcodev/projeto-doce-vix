@@ -19,10 +19,10 @@ class FileRepository implements IFileRepository {
         this.prismaClient = context.prisma;
     }
 
-    async findById(id: string): Promise<IFile | undefined> {
+    async findById(guid: string): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.findUnique({
             where: {
-                id
+                guid
             }
         })
         if (!fileP) return undefined
@@ -30,10 +30,10 @@ class FileRepository implements IFileRepository {
         return this.filePrismaRepository.generate(fileP);
     }
 
-    async deleteFile(id: string): Promise<IFile | undefined> {
+    async deleteFile(guid: string): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.delete({
             where: {
-                id
+                guid
             }
         })
         if (!fileP) return undefined
@@ -42,10 +42,10 @@ class FileRepository implements IFileRepository {
 
     }
 
-    async updateFile({ id, path }: IUpdateFileDTO): Promise<IFile | undefined> {
+    async updateFile({ guid, path }: IUpdateFileDTO): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.update({
             where: {
-                id
+                guid
             },
             data: {
                 path: path.toString()

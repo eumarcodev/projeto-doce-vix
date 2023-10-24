@@ -1,5 +1,5 @@
 interface IDayOfWeek {
-    id: string;
+    id: number;
     guid: string;
     name: string;
     createdAt: Date;

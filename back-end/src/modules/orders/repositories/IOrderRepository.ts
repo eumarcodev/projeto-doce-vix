@@ -1,7 +1,7 @@
 import { IOrder } from "../models/IOrder";
 
 interface ICreateOrderDTO {
-    userId: string
+    userId: number
     total: number
 }
 
@@ -16,7 +16,7 @@ interface IListOrdersRequest {
     offset?: number;
 }
 interface IOrderRepository {
-    findById(id: string): Promise<IOrder | undefined>
+    findByGuid(guid: string): Promise<IOrder | undefined>
     create({
         userId,
         total,

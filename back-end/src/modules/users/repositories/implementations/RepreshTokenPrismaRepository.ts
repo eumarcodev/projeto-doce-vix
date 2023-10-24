@@ -20,7 +20,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         this.prismaClient = context.prisma;
     }
 
-    async findById(id: string): Promise<IRefreshToken | undefined> {
+    async findById(id: number): Promise<IRefreshToken | undefined> {
         const refreshTokenP = await this.prismaClient.refreshToken.findFirst({
             where: {
                 id,
@@ -32,7 +32,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
     }
 
-    async findByUserId(userId: string): Promise<IRefreshToken | undefined> {
+    async findByUserId(userId: number): Promise<IRefreshToken | undefined> {
         const refreshTokenP = await this.prismaClient.refreshToken.findFirst({
             where: {
                 userId,
@@ -65,7 +65,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
         return this.refreshTokenPrismaFactory.generate(refreshTokenP);
     }
 
-    async deleteAll(userId: string): Promise<void> {
+    async deleteAll(userId: number): Promise<void> {
         await this.prismaClient.refreshToken.deleteMany({
             where: {
                 userId

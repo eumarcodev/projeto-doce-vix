@@ -1,14 +1,14 @@
 import { IOrderItem } from "../models/IOrderItem";
 
 interface ICreateOrderItemDTO {
-    orderId: string
-    productId: string
+    orderId: number
+    productId: number
     quantity: number
 }
 
 interface IUpdateOrderItemDTO {
     guid: string;
-    productId: string;
+    productId: number;
     quantity?: number;
 }
 

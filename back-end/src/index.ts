@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/orders", orderRouter)
-app.use("/orders-itens", orderItemRouter)
+app.use("/orders/itens", orderItemRouter)
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);

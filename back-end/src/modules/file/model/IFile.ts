@@ -1,5 +1,5 @@
 export interface IFile {
-    id: string;
+    id: number;
     guid: string;
     path: string | Express.Multer.File;
     createdAt: Date;

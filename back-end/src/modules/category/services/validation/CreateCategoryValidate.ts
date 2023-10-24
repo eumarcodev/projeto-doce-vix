@@ -14,7 +14,7 @@ export class CreateCategoryValidator implements IValidator<ICreateCategoryDTO> {
 
         const categoryExists = await this.repository.findByName(name);
 
-        if (categoryExists)
+        if (!categoryExists)
             throw new ErrorHandler(
                 "Category not found",
                 HttpStatusCode.CONFLICT,

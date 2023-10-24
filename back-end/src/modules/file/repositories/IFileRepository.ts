@@ -1,7 +1,7 @@
 import { IFile } from "../model/IFile";
 
 interface IUpdateFileDTO {
-    id: string;
+    guid: string;
     path: string | Express.Multer.File;
 }
 
@@ -19,10 +19,10 @@ interface IListFileRequest {
 
 
 interface IFileRepository {
-    findById(id: string): Promise<IFile | undefined>;
+    findById(guid: string): Promise<IFile | undefined>;
     saveFile(path: Express.Multer.File): Promise<IFile | undefined>
-    updateFile({ id, path }: IUpdateFileDTO): Promise<IFile | undefined>;
-    deleteFile(id: string): Promise<IFile | undefined>;
+    updateFile({ guid, path }: IUpdateFileDTO): Promise<IFile | undefined>;
+    deleteFile(guid: string): Promise<IFile | undefined>;
     list({ search, limit, offset }: IListFileRequest): Promise<IListFileResponse | undefined>;
 }
 

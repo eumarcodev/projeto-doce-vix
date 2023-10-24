@@ -52,7 +52,7 @@ interface IProductRepository {
         offset,
     }: IListProductRequest): Promise<IListProductResponse | undefined>;
 
-    findById(id: string): Promise<IProduct | undefined>;
+    findById(id: number): Promise<IProduct | undefined>;
 }
 
 export {

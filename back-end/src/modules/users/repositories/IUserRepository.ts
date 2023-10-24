@@ -25,7 +25,7 @@ interface IListUsersRequest {
 }
 
 interface IUserRepository {
-    findById(id: string): Promise<IUser | undefined>;
+    findById(id: number): Promise<IUser | undefined>;
     findByMail(email: string): Promise<IUser | undefined>;
     create({
         name,

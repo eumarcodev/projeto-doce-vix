@@ -1,9 +1,9 @@
 import { IOrderItem } from "./IOrderItem"
 
 export interface IOrder {
-    id: string
+    id: number
     guid: string
-    userId: string
+    userId: number
     itens: IOrderItem[]
     total: number
     status: string

@@ -11,19 +11,19 @@ datasource db {
 }
 
 model Category {
-  id          String    @id @default(uuid())
+  id          Int       @id @default(autoincrement())
   guid        String    @unique @default(uuid())
   name        String
   description String
   Product     Product[]
   File        File?     @relation(fields: [fileId], references: [id])
-  fileId      String?
+  fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime
 }
 
 model File {
-  id        String     @id @default(uuid())
+  id        Int        @id @default(autoincrement())
   guid      String     @unique @default(uuid())
   path      String
   Category  Category[]
@@ -33,24 +33,24 @@ model File {
 }
 
 model Product {
-  id          String      @id @default(uuid())
+  id          Int         @id @default(autoincrement())
   guid        String      @unique @default(uuid())
   name        String
   description String
   price       Float
-  categoryId  String
+  categoryId  Int
   category    Category    @relation(fields: [categoryId], references: [id])
   files       File?       @relation(fields: [fileId], references: [id])
-  fileId      String?
+  fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime
   dayOfWeek   DayOfWeek?  @relation(fields: [dayOfWeekId], references: [id])
-  dayOfWeekId String?
+  dayOfWeekId Int?
   OrderItem   OrderItem[]
 }
 
 model DayOfWeek {
-  id        String    @id @default(uuid())
+  id        Int       @id @default(autoincrement())
   guid      String    @unique @default(uuid())
   name      String
   createdAt DateTime
@@ -59,7 +59,7 @@ model DayOfWeek {
 }
 
 model User {
-  id           String         @id @default(uuid())
+  id           Int            @id @default(autoincrement())
   guid         String         @unique @default(uuid())
   name         String
   email        String
@@ -75,9 +75,9 @@ model User {
 }
 
 model RefreshToken {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   guid      String   @unique @default(uuid())
-  userId    String
+  userId    Int
   user      User     @relation(fields: [userId], references: [id])
   expireIn  DateTime
   role      String
@@ -88,9 +88,9 @@ model RefreshToken {
 }
 
 model Order {
-  id        String      @id @default(uuid())
+  id        Int         @id @default(autoincrement())
   guid      String      @unique @default(uuid())
-  userId    String
+  userId    Int
   user      User        @relation(fields: [userId], references: [id])
   createdAt DateTime
   updatedAt DateTime
@@ -102,16 +102,16 @@ model Order {
 }
 
 model OrderItem {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   guid      String   @unique @default(uuid())
-  productId String
+  productId Int
   product   Product  @relation(fields: [productId], references: [id])
   quantity  Int
   price     Float
   createdAt DateTime
   updatedAt DateTime
   Order     Order    @relation(fields: [orderId], references: [id])
-  orderId   String
+  orderId   Int
 }
 
 enum OrderStatus {

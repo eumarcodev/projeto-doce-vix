@@ -3,7 +3,7 @@ import { IDayOfWeek } from "@/modules/dayOfWeek/model/IDayOfWeek";
 import { IFile } from "@/modules/file/model/IFile";
 
 export interface IProduct {
-    id: string;
+    id: number;
     guid: string;
     name: string;
     description: string;

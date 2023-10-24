@@ -6,13 +6,13 @@ import dayjs from "dayjs";
 import { IRefreshToken } from "../../model/IRefreshToken";
 import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
 
-export class RefreshTokenService implements IService<string, { token: string; refreshToken?: IRefreshToken }> {
+export class RefreshTokenService implements IService<number, { token: string; refreshToken?: IRefreshToken }> {
     constructor(
         private readonly repository: IRefreshTokenRepository,
         private readonly tokenProvider: ITokenProvider,
     ) { }
 
-    async execute(userId: string): Promise<{ token: string; refreshToken?: IRefreshToken }> {
+    async execute(userId: number): Promise<{ token: string; refreshToken?: IRefreshToken }> {
         const refreshToken = await this.repository.findByUserId(userId)
 
         if (!refreshToken) {

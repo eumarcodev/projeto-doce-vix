@@ -13,9 +13,9 @@ class DeleteFileController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { id } = request.params;
+            const { guid } = request.params;
 
-            const deletedFile = await this.useCase.execute(id);
+            const deletedFile = await this.useCase.execute(guid);
 
             return response.status(HttpStatusCode.OK).json(deletedFile);
         } catch (error) {

@@ -18,10 +18,10 @@ export class OrderPrismaRepository implements IOrderRepository {
     }
 
 
-    async findById(id: string): Promise<IOrder | undefined> {
+    async findByGuid(guid: string): Promise<IOrder | undefined> {
         const order = await this.prismaClient.order.findFirst({
             where: {
-                id
+                guid
             }
         })
 

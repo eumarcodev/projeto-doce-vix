@@ -196,7 +196,7 @@ class ProductPrismaRepository implements IProductRepository {
         };
     }
 
-    async findById(id: string): Promise<IProduct | undefined> {
+    async findById(id: number): Promise<IProduct | undefined> {
         const productsP = await this.prismaClient.product.findUnique({
             where: {
                 id,
