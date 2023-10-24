@@ -1,6 +1,7 @@
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { IRefreshToken } from "../../model/IRefreshToken";
 import {
     IRefreshTokenRepository,
@@ -10,7 +11,7 @@ import {
 export class GenerateRefreshTokenService
     implements IService<ISaveRefreshTokenDTO, IRefreshToken>
 {
-    constructor(private readonly repository: IRefreshTokenRepository) { }
+    constructor(private readonly repository: IRefreshTokenRepository) {}
 
     async execute({
         role,

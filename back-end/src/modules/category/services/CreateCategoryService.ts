@@ -1,6 +1,7 @@
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { ICategory } from "../model/ICategory";
 import {
     ICategoryRepository,
@@ -14,7 +15,7 @@ export class CreateCategoryService
     constructor(
         private readonly categoryRepository: ICategoryRepository,
         private readonly createCategoryValidator: CreateCategoryValidator,
-    ) { }
+    ) {}
 
     async execute({
         name,

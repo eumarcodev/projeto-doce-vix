@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 import express from "express";
 import path from "path";
 
-
 import { errorHandler } from "./middlewares/errorHandler";
 import { authRoutes } from "./routes/auth.routes";
 import { categoryRoutes } from "./routes/categories.routes";
@@ -28,15 +27,15 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/orders", orderRouter)
-app.use("/orders/itens", orderItemRouter)
+app.use("/orders", orderRouter);
+app.use("/orders/itens", orderItemRouter);
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
 app.use("/login", authRoutes);
 app.use("/refresh", refreshRouter);
-app.use("/files", fileRoutes)
+app.use("/files", fileRoutes);
 
 if (envs.nodeEnv === "development") {
     app.use(

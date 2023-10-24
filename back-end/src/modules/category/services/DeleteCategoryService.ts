@@ -1,8 +1,9 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { ICategory } from "../model/ICategory";
 import { ICategoryRepository } from "../repositories/ICategoryRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 export class DeleteCategoryService implements IService<string, ICategory> {
     constructor(private readonly repository: ICategoryRepository) {}

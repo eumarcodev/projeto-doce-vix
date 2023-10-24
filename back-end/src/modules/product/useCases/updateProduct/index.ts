@@ -5,10 +5,10 @@ import { DayOfWeekPrismaRepository } from "@/modules/dayOfWeek/repositories/impl
 
 import { ProductPrismaFactory } from "../../factories/ProductPrismaFactory";
 import { ProductPrismaRepository } from "../../repositories/implementations/ProductRepository";
-import { UpdateProductUseCase } from "./UpdateProductUseCase";
-import { UpdateProductController } from "./UpdateProductController";
 import { UpdateProductService } from "../../services/UpdateProductService";
 import { UpdateProductValidator } from "../../services/validation/UpdateProductValidator";
+import { UpdateProductController } from "./UpdateProductController";
+import { UpdateProductUseCase } from "./UpdateProductUseCase";
 
 const productFactory = new ProductPrismaFactory();
 const productRepository = new ProductPrismaRepository(productFactory);

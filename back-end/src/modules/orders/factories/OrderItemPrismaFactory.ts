@@ -1,16 +1,16 @@
 import { IProduct } from "@/modules/product/model/IProduct";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { OrderItem as POrderItem } from "@prisma/client";
+
 import { IOrderItem } from "../models/IOrderItem";
 
-
-
-export interface IOrderItemPrisma extends Omit<POrderItem, 'product'> {
-    product: Omit<IProduct, 'category'>;
-
+export interface IOrderItemPrisma extends Omit<POrderItem, "product"> {
+    product: Omit<IProduct, "category">;
 }
 
-export class OrderItemPrismaFactory implements IDefaultFactory<IOrderItemPrisma, IOrderItem> {
+export class OrderItemPrismaFactory
+    implements IDefaultFactory<IOrderItemPrisma, IOrderItem>
+{
     async generate(entity: IOrderItemPrisma): Promise<IOrderItem> {
         const result = {
             id: entity.id,
@@ -26,8 +26,8 @@ export class OrderItemPrismaFactory implements IDefaultFactory<IOrderItemPrisma,
             orderId: entity.orderId,
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
-        }
+        };
 
-        return result
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
 import { IRefreshTokenPrisma } from "../../factories/RefreshTokenPrismaFactory";
 import { IRefreshToken } from "../../model/IRefreshToken";
 import {
@@ -47,7 +48,7 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
     async save({
         userId,
         role,
-        expireIn
+        expireIn,
     }: ISaveRefreshTokenDTO): Promise<IRefreshToken | undefined> {
         const refreshTokenP = await this.prismaClient.refreshToken.create({
             data: {
@@ -56,7 +57,6 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
                 role,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-
             },
         });
 
@@ -68,12 +68,10 @@ class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
     async deleteAll(userId: number): Promise<void> {
         await this.prismaClient.refreshToken.deleteMany({
             where: {
-                userId
-            }
-        })
-
+                userId,
+            },
+        });
     }
 }
 
 export { RefreshTokenPrismaRepository };
-

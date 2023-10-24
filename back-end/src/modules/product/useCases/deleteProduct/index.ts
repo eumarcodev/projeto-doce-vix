@@ -1,8 +1,8 @@
 import { ProductPrismaFactory } from "../../factories/ProductPrismaFactory";
 import { ProductPrismaRepository } from "../../repositories/implementations/ProductRepository";
+import { DeleteProcutService } from "../../services/DeleteProductService";
 import { DeleteProductController } from "./DeleteProductController";
 import { DeleteProductUseCase } from "./DeleteProductUseCase";
-import { DeleteProcutService } from "../../services/DeleteProductService";
 
 const productFactory = new ProductPrismaFactory();
 const productRepository = new ProductPrismaRepository(productFactory);

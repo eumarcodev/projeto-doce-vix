@@ -2,11 +2,13 @@ import { NextFunction, Request, Response } from "express";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IController } from "@/shared/infra/protocols/IController";
+
 import { UploadFileUseCase } from "./UploadFIleUseCase";
-UploadFileUseCase
+
+UploadFileUseCase;
 
 class UploadFileController implements IController {
-    constructor(private readonly useCase: UploadFileUseCase) { }
+    constructor(private readonly useCase: UploadFileUseCase) {}
 
     async handle(
         request: Request,
@@ -14,10 +16,12 @@ class UploadFileController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const file: Express.Multer.File | undefined = request.file;
+            const { file } = request;
 
             if (!file) {
-                return response.status(HttpStatusCode.BAD_REQUEST).send({ error: "No file uploaded." });
+                return response
+                    .status(HttpStatusCode.BAD_REQUEST)
+                    .send({ error: "No file uploaded." });
             }
 
             const uploadedFile = await this.useCase.execute(file);

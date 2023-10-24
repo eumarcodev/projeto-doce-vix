@@ -3,6 +3,7 @@ import { IDayOfWeekRepository } from "@/modules/dayOfWeek/repositories/IDayOfWee
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IValidator } from "@/shared/infra/protocols/IValidator";
+
 import {
     IProductRepository,
     IUpdateProductDTO,
@@ -13,7 +14,7 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
         private readonly categoryRepository: ICategoryRepository,
         private readonly productRepository: IProductRepository,
         private readonly dayOfWeekRepository: IDayOfWeekRepository,
-    ) { }
+    ) {}
 
     async validate(data: IUpdateProductDTO): Promise<void> {
         const { guid, name, categoryName, dayOfWeek } = data;
@@ -65,7 +66,5 @@ export class UpdateProductValidator implements IValidator<IUpdateProductDTO> {
                     HttpStatusCode.NOT_FOUND,
                 );
         }
-
-
     }
 }

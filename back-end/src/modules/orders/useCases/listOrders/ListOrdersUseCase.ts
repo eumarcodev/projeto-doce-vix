@@ -20,7 +20,7 @@ export class ListOrdersUseCase implements IListPaginatedUseCase<IOrder> {
         private readonly offsetGenerator: IOffsetGenerator,
         private readonly totalPagesGenerator: ITotalPagesGenerator,
         private readonly currentPageValidation: ICurrentPageValidation,
-    ) { }
+    ) {}
     async execute({
         search,
         limit,

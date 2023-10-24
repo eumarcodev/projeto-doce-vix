@@ -94,19 +94,19 @@ class CategoryPrismaRepository implements ICategoryRepository {
     }: IListCategoryRequest): Promise<IListCategoryResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        name: {
-                            contains: search,
-                        },
-                    },
-                    {
-                        description: {
-                            contains: search,
-                        },
-                    }
-                ],
-            }
+                  OR: [
+                      {
+                          name: {
+                              contains: search,
+                          },
+                      },
+                      {
+                          description: {
+                              contains: search,
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.category.count({
@@ -147,4 +147,3 @@ class CategoryPrismaRepository implements ICategoryRepository {
 }
 
 export { CategoryPrismaRepository };
-

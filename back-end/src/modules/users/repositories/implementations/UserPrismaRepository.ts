@@ -1,6 +1,7 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
 import { IUserPrisma } from "../../factories/UserPrismaFactory";
 import { IUser } from "../../model/IUser";
 import {
@@ -31,8 +32,6 @@ class UserPrismaRepository implements IUserRepository {
 
         return this.userPrismaFactory.generate(usersP);
     }
-
-
 
     async findByMail(email: string): Promise<IUser | undefined> {
         const usersP = await this.prismaClient.user.findFirst({
@@ -65,7 +64,6 @@ class UserPrismaRepository implements IUserRepository {
 
         return this.userPrismaFactory.generate(userP);
     }
-
 
     async update({
         guid,
@@ -109,19 +107,19 @@ class UserPrismaRepository implements IUserRepository {
     }: IListUsersRequest): Promise<IListUsersResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        name: {
-                            contains: search,
-                        },
-                    },
-                    {
-                        description: {
-                            contains: search,
-                        },
-                    },
-                ],
-            }
+                  OR: [
+                      {
+                          name: {
+                              contains: search,
+                          },
+                      },
+                      {
+                          description: {
+                              contains: search,
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.user.count({
@@ -162,4 +160,3 @@ class UserPrismaRepository implements IUserRepository {
 }
 
 export { UserPrismaRepository };
-

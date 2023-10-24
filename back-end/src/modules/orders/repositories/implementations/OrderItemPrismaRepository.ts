@@ -1,9 +1,13 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
 import { IOrderItemPrisma } from "../../factories/OrderItemPrismaFactory";
 import { IOrderItem } from "../../models/IOrderItem";
-import { ICreateOrderItemDTO, IOrderItemRepository } from "../IOrderItemRepository";
+import {
+    ICreateOrderItemDTO,
+    IOrderItemRepository,
+} from "../IOrderItemRepository";
 
 export class OrderItemPrismaRepository implements IOrderItemRepository {
     private prismaClient: PrismaClient;
@@ -17,16 +21,18 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
         this.prismaClient = context.prisma;
     }
 
-
-    async create({ productId, quantity, orderId }: ICreateOrderItemDTO): Promise<IOrderItem | undefined> {
-
+    async create({
+        productId,
+        quantity,
+        orderId,
+    }: ICreateOrderItemDTO): Promise<IOrderItem | undefined> {
         const productP = await this.prismaClient.product.findFirst({
             where: {
-                id: productId
-            }
+                id: productId,
+            },
         });
 
-        if (!productP) return undefined
+        if (!productP) return undefined;
 
         const orderItemTotalPrice = productP.price * quantity;
         const order = await this.prismaClient.orderItem.create({
@@ -40,23 +46,21 @@ export class OrderItemPrismaRepository implements IOrderItemRepository {
             },
             include: {
                 Order: true,
-                product: true
-            }
+                product: true,
+            },
         });
 
         await this.prismaClient.order.update({
             where: {
-                id: orderId
+                id: orderId,
             },
             data: {
                 total: {
-                    increment: orderItemTotalPrice
-                }
-            }
+                    increment: orderItemTotalPrice,
+                },
+            },
         });
 
         return this.orderItemPrismaFactory.generate(order);
-
     }
-
 }

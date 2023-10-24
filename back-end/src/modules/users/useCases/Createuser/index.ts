@@ -1,4 +1,5 @@
 import { BcryptAdapter } from "@/shared/infra/adapters/cryptography/implementations/BcryptAdapter";
+
 import { UserPrismaFactory } from "../../factories/UserPrismaFactory";
 import { UserPrismaRepository } from "../../repositories/implementations/UserPrismaRepository";
 import { CreateUserService } from "../../services/usersServices/CreateUserService";
@@ -19,4 +20,3 @@ const createUserUseCase = new CreateUserUseCase(createUserService);
 const createUserController = new CreateUserController(createUserUseCase);
 
 export { createUserController };
-

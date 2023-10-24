@@ -2,10 +2,11 @@ import { NextFunction, Request, Response } from "express";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IController } from "@/shared/infra/protocols/IController";
+
 import { DeleteCategoryUseCase } from "./DeleteCategoryUseCase";
 
 class DeleteCategoryController implements IController {
-    constructor(private readonly useCase: DeleteCategoryUseCase) { }
+    constructor(private readonly useCase: DeleteCategoryUseCase) {}
 
     async handle(
         request: Request,
@@ -25,4 +26,3 @@ class DeleteCategoryController implements IController {
 }
 
 export { DeleteCategoryController };
-

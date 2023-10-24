@@ -1,8 +1,9 @@
-import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-import { ICategory } from "../../model/ICategory";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { ICategoryRepository } from "../../repositories/ICategoryRepository";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { IUseCase } from "@/shared/infra/protocols/IUseCase";
+
+import { ICategory } from "../../model/ICategory";
+import { ICategoryRepository } from "../../repositories/ICategoryRepository";
 
 interface IRequest {
     name: string;

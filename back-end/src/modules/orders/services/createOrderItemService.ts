@@ -1,9 +1,12 @@
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
-import { ICreateOrderItemDTO, IOrderItemRepository } from "../repositories/IOrderItemRepository";
 
 import { IOrderItem } from "../models/IOrderItem";
+import {
+    ICreateOrderItemDTO,
+    IOrderItemRepository,
+} from "../repositories/IOrderItemRepository";
 import { CreateOrderValidator } from "./validator/createOrderValidator";
 
 export class CreateOrderItemService
@@ -12,7 +15,7 @@ export class CreateOrderItemService
     constructor(
         private readonly repository: IOrderItemRepository,
         private readonly createOrderValidator: CreateOrderValidator,
-    ) { }
+    ) {}
 
     async execute({
         orderId,
@@ -28,17 +31,14 @@ export class CreateOrderItemService
         const orderItem = await this.repository.create({
             orderId,
             productId,
-            quantity
-        })
-
+            quantity,
+        });
 
         if (!orderItem)
-
             throw new ErrorHandler(
                 "Error on create order ",
                 HttpStatusCode.BAD_REQUEST,
             );
-
 
         return orderItem;
     }

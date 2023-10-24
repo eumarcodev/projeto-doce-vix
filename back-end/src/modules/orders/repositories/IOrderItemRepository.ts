@@ -1,9 +1,9 @@
 import { IOrderItem } from "../models/IOrderItem";
 
 interface ICreateOrderItemDTO {
-    orderId: number
-    productId: number
-    quantity: number
+    orderId: number;
+    productId: number;
+    quantity: number;
 }
 
 interface IUpdateOrderItemDTO {
@@ -17,9 +17,7 @@ interface IOrderItemRepository {
         orderId,
         productId,
         quantity,
-    }: ICreateOrderItemDTO): Promise<IOrderItem | undefined>
-
+    }: ICreateOrderItemDTO): Promise<IOrderItem | undefined>;
 }
 
 export { ICreateOrderItemDTO, IOrderItemRepository, IUpdateOrderItemDTO };
-

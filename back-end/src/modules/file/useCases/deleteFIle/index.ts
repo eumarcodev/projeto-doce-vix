@@ -9,4 +9,3 @@ const deleteFileUseCase = new DeleteFileUseCase(fileRepository);
 const deleteFileController = new DeleteFileController(deleteFileUseCase);
 
 export { deleteFileController };
-

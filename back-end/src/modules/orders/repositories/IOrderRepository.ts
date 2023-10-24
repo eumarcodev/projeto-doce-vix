@@ -1,13 +1,13 @@
 import { IOrder } from "../models/IOrder";
 
 interface ICreateOrderDTO {
-    userId: number
-    total: number
+    userId: number;
+    total: number;
 }
 
 interface IListOrdersResponse {
-    orders: IOrder[]
-    count: number
+    orders: IOrder[];
+    count: number;
 }
 
 interface IListOrdersRequest {
@@ -16,17 +16,18 @@ interface IListOrdersRequest {
     offset?: number;
 }
 interface IOrderRepository {
-    findByGuid(guid: string): Promise<IOrder | undefined>
-    create({
-        userId,
-        total,
-    }: ICreateOrderDTO): Promise<IOrder | undefined>
+    findByGuid(guid: string): Promise<IOrder | undefined>;
+    create({ userId, total }: ICreateOrderDTO): Promise<IOrder | undefined>;
     list({
         search,
         limit,
         offset,
-    }: IListOrdersRequest): Promise<IListOrdersResponse | undefined>
+    }: IListOrdersRequest): Promise<IListOrdersResponse | undefined>;
 }
 
-export { ICreateOrderDTO, IListOrdersRequest, IListOrdersResponse, IOrderRepository };
-
+export {
+    ICreateOrderDTO,
+    IListOrdersRequest,
+    IListOrdersResponse,
+    IOrderRepository,
+};

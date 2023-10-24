@@ -2,11 +2,11 @@ import { CurrentPageValidation } from "@/shared/utils/pagination/adapters/implem
 import { OffsetGenerator } from "@/shared/utils/pagination/adapters/implementations/Offset";
 import { TotalPagesGenerator } from "@/shared/utils/pagination/adapters/implementations/TotalPagesGenerator";
 import { Sorting } from "@/shared/utils/tools/adapters/implementations/Sorting";
+
 import { OrderPrismaFactory } from "../../factories/OrderPrismaFactory";
 import { OrderPrismaRepository } from "../../repositories/implementations/OrderPrismaRepository";
 import { ListOrdersController } from "./ListOrdersController";
 import { ListOrdersUseCase } from "./ListOrdersUseCase";
-
 
 const orderPrismaFactory = new OrderPrismaFactory();
 const orderPrismaRepository = new OrderPrismaRepository(orderPrismaFactory);
@@ -20,8 +20,7 @@ const listOrdersUseCase = new ListOrdersUseCase(
     offsetGenerator,
     totalPagesGenerator,
     currentPageValidation,
-)
+);
 const listOrdersController = new ListOrdersController(listOrdersUseCase);
 
 export { listOrdersController };
-

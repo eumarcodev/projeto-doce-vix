@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IController } from "@/shared/infra/protocols/IController";
+
 import { UpdateUserUsecase } from "./UpdateUserUseCase";
 
 class UpdateUserController implements IController {

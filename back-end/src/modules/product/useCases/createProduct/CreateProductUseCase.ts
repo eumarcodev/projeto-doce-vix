@@ -1,7 +1,7 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
+
 import { IProduct } from "../../model/IProduct";
 import { ICreateProductDTO } from "../../repositories/IProductRepository";
-
 import { CreateProductService } from "../../services/CreateProductService";
 
 export class CreateProductUseCase

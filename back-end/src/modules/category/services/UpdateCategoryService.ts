@@ -1,11 +1,12 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { ICategory } from "../model/ICategory";
 import {
     ICategoryRepository,
     IUpdateCategoryDTO,
 } from "../repositories/ICategoryRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { UpdateCategoryValidator } from "./validation/UpdateCategoryValidate";
 
 export class UpdateCategoryService

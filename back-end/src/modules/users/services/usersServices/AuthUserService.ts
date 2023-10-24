@@ -1,12 +1,13 @@
-import { IService } from "@/shared/infra/protocols/IService";
-import { IRefreshToken } from "../../model/IRefreshToken";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import dayjs from "dayjs";
 
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvider";
-import dayjs from "dayjs";
+import { IService } from "@/shared/infra/protocols/IService";
+
+import { IRefreshToken } from "../../model/IRefreshToken";
+import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { AuthUserValidator } from "./validation/AuthUserValidator";
 
 export interface IRequest {
@@ -16,14 +17,14 @@ export interface IRequest {
 
 export class AuthUserService
     implements
-    IService<IRequest, { token: string; refreshToken: IRefreshToken }>
+        IService<IRequest, { token: string; refreshToken: IRefreshToken }>
 {
     constructor(
         private readonly authUserValidator: AuthUserValidator,
         private readonly repository: IUserRepository,
         private readonly refreshTokenRepository: IRefreshTokenRepository,
         private readonly tokenProvider: ITokenProvider,
-    ) { }
+    ) {}
 
     async execute({ email, password }: IRequest): Promise<{
         token: string;
@@ -42,19 +43,18 @@ export class AuthUserService
                 HttpStatusCode.UNAUTHORIZED,
             );
 
-
         const token = await this.tokenProvider.generateToken(
             { userId: userExists.id, role: userExists.role },
-            "60s"
+            "60s",
         );
 
-        const expireIn = dayjs().add(Number(process.env.REFRESH_TOKEN_EXPIRATION), "day").toDate();
+        const expireIn = dayjs()
+            .add(Number(process.env.REFRESH_TOKEN_EXPIRATION), "day")
+            .toDate();
         const refreshToken = await this.refreshTokenRepository.save({
             userId: userExists.id,
             expireIn,
-            role: userExists.role
-
-
+            role: userExists.role,
         });
 
         if (!refreshToken)

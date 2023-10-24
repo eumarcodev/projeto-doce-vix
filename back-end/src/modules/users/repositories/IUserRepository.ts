@@ -44,8 +44,13 @@ interface IUserRepository {
         limit,
         offset,
     }: IListUsersRequest): Promise<IListUsersResponse | undefined>;
-    findByGuid(guid: string): Promise<IUser | undefined>
+    findByGuid(guid: string): Promise<IUser | undefined>;
 }
 
-export { ICreateUserDTO, IListUsersRequest, IListUsersResponse, IUpdateUserDTO, IUserRepository };
-
+export {
+    ICreateUserDTO,
+    IListUsersRequest,
+    IListUsersResponse,
+    IUpdateUserDTO,
+    IUserRepository,
+};

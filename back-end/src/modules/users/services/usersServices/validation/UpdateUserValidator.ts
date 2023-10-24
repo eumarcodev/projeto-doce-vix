@@ -1,14 +1,14 @@
-import { IValidator } from "@/shared/infra/protocols/IValidator";
-
-import { IUpdateUserDTO, IUserRepository } from "@/modules/users/repositories/IUserRepository";
+import {
+    IUpdateUserDTO,
+    IUserRepository,
+} from "@/modules/users/repositories/IUserRepository";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
+import { IValidator } from "@/shared/infra/protocols/IValidator";
 import { passwordSchema } from "@/shared/utils/validatePassword";
 
 export class UpdateUserValidator implements IValidator<IUpdateUserDTO> {
-    constructor(
-        private readonly repository: IUserRepository,
-    ) { }
+    constructor(private readonly repository: IUserRepository) {}
 
     async validate(data: IUpdateUserDTO): Promise<void> {
         const { guid, email, password } = data;

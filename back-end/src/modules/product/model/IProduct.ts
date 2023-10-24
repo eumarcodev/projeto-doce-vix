@@ -13,4 +13,4 @@ export interface IProduct {
     dayOfWeek?: IDayOfWeek;
     createdAt: Date;
     updatedAt: Date;
-}   
+}

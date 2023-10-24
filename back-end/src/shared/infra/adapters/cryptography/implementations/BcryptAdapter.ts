@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+
 import { ICriptography } from "../ICryptography";
 
 export class BcryptAdapter implements ICriptography {

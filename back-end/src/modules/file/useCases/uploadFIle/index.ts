@@ -3,9 +3,8 @@ import { FileRepository } from "../../repositories/implementations/FileRepositor
 import { UploadFileController } from "./UploadFIleController";
 import { UploadFileUseCase } from "./UploadFIleUseCase";
 
-
-const fileFactory = new FilePrismaFactory()
-const fileRepository = new FileRepository(fileFactory)
+const fileFactory = new FilePrismaFactory();
+const fileRepository = new FileRepository(fileFactory);
 const uploadFileUseCase = new UploadFileUseCase(fileRepository);
-const uploadFIleController = new UploadFileController(uploadFileUseCase)
+const uploadFIleController = new UploadFileController(uploadFileUseCase);
 export { uploadFIleController };

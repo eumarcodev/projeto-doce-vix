@@ -1,4 +1,5 @@
 import { TokenProvider } from "@/shared/infra/adapters/cryptography/implementations/TokenServiceImplementation";
+
 import { RefreshTokenPrismaFactory } from "../../factories/RefreshTokenPrismaFactory";
 import { RefreshTokenPrismaRepository } from "../../repositories/implementations/RepreshTokenPrismaRepository";
 import { RefreshTokenService } from "../../services/tokenServices/RefreshTokenService";
@@ -20,4 +21,3 @@ const refreshTokenController = new RefreshTokenUserController(
 );
 
 export { refreshTokenController };
-

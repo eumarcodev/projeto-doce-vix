@@ -9,6 +9,7 @@ dist/
 build/
 .env
 
+uploads
 # Compiled Java class files
 *.class
 

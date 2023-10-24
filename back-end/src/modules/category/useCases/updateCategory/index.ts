@@ -1,9 +1,9 @@
 import { CategoryPrismaFactory } from "../../factories/CategoryPrismaFactory";
 import { CategoryPrismaRepository } from "../../repositories/implementations/CategoryRepository";
-import { UpdateCategoryUseCase } from "./UpdateCategoryUseCase";
-import { UpdateCategoryController } from "./UpdateCategoryController";
 import { UpdateCategoryService } from "../../services/UpdateCategoryService";
 import { UpdateCategoryValidator } from "../../services/validation/UpdateCategoryValidate";
+import { UpdateCategoryController } from "./UpdateCategoryController";
+import { UpdateCategoryUseCase } from "./UpdateCategoryUseCase";
 
 const categoryFactory = new CategoryPrismaFactory();
 const categoryRepository = new CategoryPrismaRepository(categoryFactory);

@@ -1,12 +1,13 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
+import { IProduct } from "../model/IProduct";
 import {
     IProductRepository,
     IUpdateProductDTO,
 } from "../repositories/IProductRepository";
-import { IProduct } from "../model/IProduct";
 import { UpdateProductValidator } from "./validation/UpdateProductValidator";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 export class UpdateProductService
     implements IService<IUpdateProductDTO, IProduct>

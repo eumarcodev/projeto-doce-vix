@@ -18,4 +18,3 @@ interface IRefreshTokenRepository {
 }
 
 export { IRefreshTokenRepository, ISaveRefreshTokenDTO };
-

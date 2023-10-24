@@ -3,7 +3,7 @@ import { User as PUser } from "@prisma/client";
 
 import { IUser } from "../model/IUser";
 
-export interface IUserPrisma extends PUser { }
+export interface IUserPrisma extends PUser {}
 
 export class UserPrismaFactory implements IDefaultFactory<IUserPrisma, IUser> {
     async generate(entity: IUserPrisma): Promise<IUser> {

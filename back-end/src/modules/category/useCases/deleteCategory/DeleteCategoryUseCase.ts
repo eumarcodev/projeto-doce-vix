@@ -1,4 +1,5 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
+
 import { ICategory } from "../../model/ICategory";
 import { DeleteCategoryService } from "../../services/DeleteCategoryService";
 

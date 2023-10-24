@@ -13,7 +13,7 @@ export class AuthUserValidator implements IValidator<IRequest> {
     constructor(
         private readonly repository: IUserRepository,
         private readonly cryptography: ICriptography,
-    ) { }
+    ) {}
 
     async validate(data: IRequest): Promise<void> {
         const { email, password } = data;

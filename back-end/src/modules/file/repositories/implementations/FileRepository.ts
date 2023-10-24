@@ -1,10 +1,15 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
 import { IFilePrisma } from "../../factories/FilePrismaFactory";
 import { IFile } from "../../model/IFile";
-import { IFileRepository, IListFileRequest, IListFileResponse, IUpdateFileDTO } from "../IFileRepository";
-
+import {
+    IFileRepository,
+    IListFileRequest,
+    IListFileResponse,
+    IUpdateFileDTO,
+} from "../IFileRepository";
 
 class FileRepository implements IFileRepository {
     private prismaClient: PrismaClient;
@@ -14,7 +19,6 @@ class FileRepository implements IFileRepository {
             IFilePrisma,
             IFile
         >,
-
     ) {
         this.prismaClient = context.prisma;
     }
@@ -22,10 +26,10 @@ class FileRepository implements IFileRepository {
     async findById(guid: string): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.findUnique({
             where: {
-                guid
-            }
-        })
-        if (!fileP) return undefined
+                guid,
+            },
+        });
+        if (!fileP) return undefined;
 
         return this.filePrismaRepository.generate(fileP);
     }
@@ -33,41 +37,43 @@ class FileRepository implements IFileRepository {
     async deleteFile(guid: string): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.delete({
             where: {
-                guid
-            }
-        })
-        if (!fileP) return undefined
+                guid,
+            },
+        });
+        if (!fileP) return undefined;
 
         return fileP;
-
     }
 
-    async updateFile({ guid, path }: IUpdateFileDTO): Promise<IFile | undefined> {
+    async updateFile({
+        guid,
+        path,
+    }: IUpdateFileDTO): Promise<IFile | undefined> {
         const fileP = await this.prismaClient.file.update({
             where: {
-                guid
+                guid,
             },
             data: {
-                path: path.toString()
-            }
-        })
+                path: path.toString(),
+            },
+        });
 
-        if (!fileP) return undefined
+        if (!fileP) return undefined;
 
         return this.filePrismaRepository.generate(fileP);
     }
 
     async saveFile(file: Express.Multer.File): Promise<IFile | undefined> {
-        const filePath = file.path
+        const filePath = file.path;
 
         const fileP = await this.prismaClient.file.create({
             data: {
                 path: filePath,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-            }
-        })
-        if (!fileP) return undefined
+            },
+        });
+        if (!fileP) return undefined;
 
         return this.filePrismaRepository.generate(fileP);
     }
@@ -79,14 +85,14 @@ class FileRepository implements IFileRepository {
     }: IListFileRequest): Promise<IListFileResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        path: {
-                            contains: search,
-                        },
-                    }
-                ],
-            }
+                  OR: [
+                      {
+                          path: {
+                              contains: search,
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.file.count({
@@ -112,9 +118,6 @@ class FileRepository implements IFileRepository {
             count,
         };
     }
-
-
-
 }
 
 export { FileRepository };

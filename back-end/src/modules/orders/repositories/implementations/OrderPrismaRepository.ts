@@ -1,9 +1,15 @@
 import { context } from "@/shared/infra/database/Context";
 import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { PrismaClient } from "@prisma/client";
+
 import { IOrderPrisma } from "../../factories/OrderPrismaFactory";
 import { IOrder } from "../../models/IOrder";
-import { ICreateOrderDTO, IListOrdersRequest, IListOrdersResponse, IOrderRepository } from "../IOrderRepository";
+import {
+    ICreateOrderDTO,
+    IListOrdersRequest,
+    IListOrdersResponse,
+    IOrderRepository,
+} from "../IOrderRepository";
 
 export class OrderPrismaRepository implements IOrderRepository {
     private prismaClient: PrismaClient;
@@ -17,27 +23,27 @@ export class OrderPrismaRepository implements IOrderRepository {
         this.prismaClient = context.prisma;
     }
 
-
     async findByGuid(guid: string): Promise<IOrder | undefined> {
         const order = await this.prismaClient.order.findFirst({
             where: {
-                guid
-            }
-        })
+                guid,
+            },
+        });
 
-        if (!order) return undefined
+        if (!order) return undefined;
     }
 
-
-    async create({ userId, total }: ICreateOrderDTO): Promise<IOrder | undefined> {
-
+    async create({
+        userId,
+        total,
+    }: ICreateOrderDTO): Promise<IOrder | undefined> {
         const userExists = await this.prismaClient.user.findFirst({
             where: {
-                id: userId
-            }
-        })
+                id: userId,
+            },
+        });
 
-        if (!userExists) return undefined
+        if (!userExists) return undefined;
         const order = await this.prismaClient.order.create({
             data: {
                 userId,
@@ -48,16 +54,14 @@ export class OrderPrismaRepository implements IOrderRepository {
             include: {
                 itens: {
                     include: {
-                        product: true
-                    }
-                }
-            }
+                        product: true,
+                    },
+                },
+            },
         });
 
         return this.orderPrismaFactory.generate(order);
-
     }
-
 
     async list({
         search,
@@ -66,15 +70,14 @@ export class OrderPrismaRepository implements IOrderRepository {
     }: IListOrdersRequest): Promise<IListOrdersResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        userId: {
-                            contains: search,
-                        },
-                    },
-
-                ],
-            }
+                  OR: [
+                      {
+                          userId: {
+                              contains: search,
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.order.count({
@@ -108,10 +111,8 @@ export class OrderPrismaRepository implements IOrderRepository {
         );
 
         return {
-            orders: orders.filter(order => order !== null) as IOrder[],
+            orders: orders.filter((order) => order !== null) as IOrder[],
             count,
         };
     }
-
-
 }

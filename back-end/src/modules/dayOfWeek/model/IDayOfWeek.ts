@@ -7,4 +7,3 @@ interface IDayOfWeek {
 }
 
 export { IDayOfWeek };
-

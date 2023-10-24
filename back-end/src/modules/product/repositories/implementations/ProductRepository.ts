@@ -27,8 +27,8 @@ class ProductPrismaRepository implements IProductRepository {
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productsP) return undefined;
@@ -70,13 +70,12 @@ class ProductPrismaRepository implements IProductRepository {
                 dayOfWeekId: dayOfWeekP?.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-
             },
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productP) return undefined;
@@ -119,8 +118,8 @@ class ProductPrismaRepository implements IProductRepository {
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productP) return undefined;
@@ -136,8 +135,8 @@ class ProductPrismaRepository implements IProductRepository {
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productP) return undefined;
@@ -152,19 +151,19 @@ class ProductPrismaRepository implements IProductRepository {
     }: I.IListProductRequest): Promise<I.IListProductResponse | undefined> {
         const where = search
             ? {
-                OR: [
-                    {
-                        name: {
-                            contains: search,
-                        },
-                    },
-                    {
-                        description: {
-                            contains: search,
-                        },
-                    },
-                ],
-            }
+                  OR: [
+                      {
+                          name: {
+                              contains: search,
+                          },
+                      },
+                      {
+                          description: {
+                              contains: search,
+                          },
+                      },
+                  ],
+              }
             : undefined;
 
         const count = await this.prismaClient.product.count({
@@ -178,8 +177,8 @@ class ProductPrismaRepository implements IProductRepository {
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productsP) return undefined;
@@ -204,8 +203,8 @@ class ProductPrismaRepository implements IProductRepository {
             include: {
                 files: true,
                 category: true,
-                dayOfWeek: true
-            }
+                dayOfWeek: true,
+            },
         });
 
         if (!productsP) return undefined;
@@ -215,4 +214,3 @@ class ProductPrismaRepository implements IProductRepository {
 }
 
 export { ProductPrismaRepository };
-

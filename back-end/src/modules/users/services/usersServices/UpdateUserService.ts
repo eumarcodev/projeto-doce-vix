@@ -2,6 +2,7 @@ import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ICriptography } from "@/shared/infra/adapters/cryptography/ICryptography";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { IUser } from "../../model/IUser";
 import {
     IUpdateUserDTO,
@@ -9,13 +10,12 @@ import {
 } from "../../repositories/IUserRepository";
 import { UpdateUserValidator } from "./validation/UpdateUserValidator";
 
-
 export class UpdateUserService implements IService<IUpdateUserDTO, IUser> {
     constructor(
         private readonly updateUserValidator: UpdateUserValidator,
         private readonly repository: IUserRepository,
         private readonly cryptography: ICriptography,
-    ) { }
+    ) {}
 
     async execute({
         guid,
@@ -29,8 +29,7 @@ export class UpdateUserService implements IService<IUpdateUserDTO, IUser> {
             password,
         });
 
-        const encryptedpassword =
-            await this.cryptography.encrypt(password);
+        const encryptedpassword = await this.cryptography.encrypt(password);
 
         const user = await this.repository.update({
             guid,

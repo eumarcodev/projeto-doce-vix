@@ -3,7 +3,7 @@ import { RefreshToken as PRefreshToken } from "@prisma/client";
 
 import { IRefreshToken } from "../model/IRefreshToken";
 
-export interface IRefreshTokenPrisma extends PRefreshToken { }
+export interface IRefreshTokenPrisma extends PRefreshToken {}
 
 export class RefreshTokenPrismaFactory
     implements IDefaultFactory<IRefreshTokenPrisma, IRefreshToken>
@@ -13,7 +13,7 @@ export class RefreshTokenPrismaFactory
             id: entity.id,
             userId: entity.userId,
             expireIn: entity.expireIn,
-            role: entity.role
+            role: entity.role,
         };
 
         return result;

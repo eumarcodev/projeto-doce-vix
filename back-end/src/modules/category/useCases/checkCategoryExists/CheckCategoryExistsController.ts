@@ -1,7 +1,9 @@
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
-import { CheckCategoryExistsUseCase } from "./CheckCategoryExistsUseCase";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+
+import { CheckCategoryExistsUseCase } from "./CheckCategoryExistsUseCase";
 
 class CheckCategoryExistsController implements IController {
     constructor(private readonly useCase: CheckCategoryExistsUseCase) {}

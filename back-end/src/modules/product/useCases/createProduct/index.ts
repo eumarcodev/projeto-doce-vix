@@ -1,16 +1,16 @@
 import { CategoryPrismaFactory } from "@/modules/category/factories/CategoryPrismaFactory";
 import { CategoryPrismaRepository } from "@/modules/category/repositories/implementations/CategoryRepository";
+import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
 import { DayOfWeekPrismaFactory } from "@/modules/dayOfWeek/factories/DayOfWeekPrismaFactory";
 import { DayOfWeekPrismaRepository } from "@/modules/dayOfWeek/repositories/implementations/DayOfWeekRepository";
+import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
 
 import { ProductPrismaFactory } from "../../factories/ProductPrismaFactory";
 import { ProductPrismaRepository } from "../../repositories/implementations/ProductRepository";
+import { CreateProductService } from "../../services/CreateProductService";
+import { CreateProductValidator } from "../../services/validation/CreateProductValidator";
 import { CreateProductController } from "./CreateProductController";
 import { CreateProductUseCase } from "./CreateProductUseCase";
-import { CreateProductService } from "../../services/CreateProductService";
-import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/validation/DayOfWeekCheckExistsValidator";
-import { CreateCategoryValidator } from "@/modules/category/services/validation/CreateCategoryValidate";
-import { CreateProductValidator } from "../../services/validation/CreateProductValidator";
 
 const productFactory = new ProductPrismaFactory();
 const productRepository = new ProductPrismaRepository(productFactory);

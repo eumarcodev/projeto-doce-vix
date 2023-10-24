@@ -3,6 +3,7 @@ import { DayOfWeekCheckExistsValidator } from "@/modules/dayOfWeek/services/vali
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { IProduct } from "../model/IProduct";
 import {
     ICreateProductDTO,
@@ -18,7 +19,7 @@ export class CreateProductService
         private readonly dayOfWeekCheckExists: DayOfWeekCheckExistsValidator,
         private readonly createProductValidator: CreateProductValidator,
         private readonly productRepository: IProductRepository,
-    ) { }
+    ) {}
 
     async execute({
         name,
@@ -59,4 +60,3 @@ export class CreateProductService
         return product;
     }
 }
-

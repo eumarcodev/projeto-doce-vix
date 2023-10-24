@@ -1,4 +1,5 @@
 import { sign } from "jsonwebtoken";
+
 import { ITokenProvider } from "../ITokenProvider";
 import { ITokenProviderPayload } from "../ITokenProviderPayload";
 

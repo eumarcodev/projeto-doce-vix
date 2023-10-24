@@ -1,8 +1,9 @@
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
+
 import { IProduct } from "../model/IProduct";
 import { IProductRepository } from "../repositories/IProductRepository";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 
 export class DeleteProcutService implements IService<string, IProduct> {
     constructor(private readonly repository: IProductRepository) {}

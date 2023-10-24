@@ -3,10 +3,11 @@ import { NextFunction, Request, Response } from "express";
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { IController } from "@/shared/infra/protocols/IController";
 import { validateQuery } from "@/shared/utils/validateQueryList";
+
 import { ListOrdersUseCase } from "./ListOrdersUseCase";
 
 export class ListOrdersController implements IController {
-    constructor(private readonly listOrdersUseCase: ListOrdersUseCase) { }
+    constructor(private readonly listOrdersUseCase: ListOrdersUseCase) {}
 
     async handle(
         request: Request,

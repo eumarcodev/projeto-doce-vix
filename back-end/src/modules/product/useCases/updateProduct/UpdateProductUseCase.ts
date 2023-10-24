@@ -1,7 +1,7 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-import { IUpdateProductDTO } from "../../repositories/IProductRepository";
-import { IProduct } from "../../model/IProduct";
 
+import { IProduct } from "../../model/IProduct";
+import { IUpdateProductDTO } from "../../repositories/IProductRepository";
 import { UpdateProductService } from "../../services/UpdateProductService";
 
 export class UpdateProductUseCase

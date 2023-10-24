@@ -1,4 +1,5 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
+
 import { IProduct } from "../../model/IProduct";
 import { DeleteProcutService } from "../../services/DeleteProductService";
 

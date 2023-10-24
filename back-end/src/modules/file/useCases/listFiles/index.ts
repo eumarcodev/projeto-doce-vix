@@ -3,7 +3,6 @@ import { OffsetGenerator } from "@/shared/utils/pagination/adapters/implementati
 import { TotalPagesGenerator } from "@/shared/utils/pagination/adapters/implementations/TotalPagesGenerator";
 import { Sorting } from "@/shared/utils/tools/adapters/implementations/Sorting";
 
-
 import { FilePrismaFactory } from "../../factories/FilePrismaFactory";
 import { FileRepository } from "../../repositories/implementations/FileRepository";
 import { ListFilesController } from "./ListFIlesController";
@@ -25,4 +24,3 @@ const listFilesUseCase = new ListFilesUseCase(
 const listFilesController = new ListFilesController(listFilesUseCase);
 
 export { listFilesController };
-

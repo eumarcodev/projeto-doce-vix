@@ -1,11 +1,18 @@
-import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
-import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { NextFunction, Request, Response } from "express";
 
-const ensureAdmin = (request: Request, response: Response, next: NextFunction) => {
+import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 
-    if (request.user.role !== 'ADMIN')
-        throw new ErrorHandler("Access denied. Admin only.", HttpStatusCode.FORBIDDEN);
+const ensureAdmin = (
+    request: Request,
+    response: Response,
+    next: NextFunction,
+) => {
+    if (request.user.role !== "ADMIN")
+        throw new ErrorHandler(
+            "Access denied. Admin only.",
+            HttpStatusCode.FORBIDDEN,
+        );
 
     return next();
 };

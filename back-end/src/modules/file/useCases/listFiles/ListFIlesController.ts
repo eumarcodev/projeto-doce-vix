@@ -7,7 +7,7 @@ import { validateQuery } from "@/shared/utils/validateQueryList";
 import { ListFilesUseCase } from "./ListFilesUseCase";
 
 export class ListFilesController implements IController {
-    constructor(private readonly listFilesUseCase: ListFilesUseCase) { }
+    constructor(private readonly listFilesUseCase: ListFilesUseCase) {}
 
     async handle(
         request: Request,

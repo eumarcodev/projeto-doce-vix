@@ -1,7 +1,7 @@
 import { IUseCase } from "@/shared/infra/protocols/IUseCase";
-import { IUpdateCategoryDTO } from "../../repositories/ICategoryRepository";
-import { ICategory } from "../../model/ICategory";
 
+import { ICategory } from "../../model/ICategory";
+import { IUpdateCategoryDTO } from "../../repositories/ICategoryRepository";
 import { UpdateCategoryService } from "../../services/UpdateCategoryService";
 
 export class UpdateCategoryUseCase

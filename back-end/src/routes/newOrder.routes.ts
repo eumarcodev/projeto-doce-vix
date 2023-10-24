@@ -1,8 +1,9 @@
-import { createOrderController } from "@/modules/orders/useCases/createOrder";
-import { listOrdersController } from "@/modules/orders/useCases/listOrders";
 import { Router } from "express";
 
-const newOrderRouter = Router()
+import { createOrderController } from "@/modules/orders/useCases/createOrder";
+import { listOrdersController } from "@/modules/orders/useCases/listOrders";
+
+const newOrderRouter = Router();
 
 newOrderRouter.post("/", (request, response, next) => {
     return createOrderController.handle(request, response, next);
