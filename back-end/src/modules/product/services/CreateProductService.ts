@@ -25,11 +25,11 @@ export class CreateProductService
         name,
         description,
         price,
-        categoryName,
+        categoryGuid,
         dayOfWeek,
     }: ICreateProductDTO): Promise<IProduct> {
         await this.createCategoryValidator.validate({
-            name: categoryName,
+            name: categoryGuid,
             description: "",
         });
 
@@ -39,7 +39,7 @@ export class CreateProductService
             name,
             description,
             price,
-            categoryName,
+            categoryGuid,
             dayOfWeek,
         });
 
@@ -47,7 +47,7 @@ export class CreateProductService
             name,
             description,
             price,
-            categoryName,
+            categoryGuid,
             dayOfWeek,
         });
 

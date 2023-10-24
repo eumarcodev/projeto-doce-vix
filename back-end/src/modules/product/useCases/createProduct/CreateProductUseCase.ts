@@ -13,14 +13,14 @@ export class CreateProductUseCase
         name,
         description,
         price,
-        categoryName,
+        categoryGuid,
         dayOfWeek,
     }: ICreateProductDTO): Promise<IProduct> {
         return this.createProductService.execute({
             name,
             description,
             price,
-            categoryName,
+            categoryGuid,
             dayOfWeek,
         });
     }

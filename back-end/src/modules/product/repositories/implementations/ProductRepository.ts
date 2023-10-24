@@ -40,12 +40,12 @@ class ProductPrismaRepository implements IProductRepository {
         name,
         description,
         price,
-        categoryName,
+        categoryGuid,
         dayOfWeek,
     }: I.ICreateProductDTO): Promise<IProduct | undefined> {
         const categoriesP = await this.prismaClient.category.findFirst({
             where: {
-                name: categoryName,
+                guid: categoryGuid,
             },
         });
 

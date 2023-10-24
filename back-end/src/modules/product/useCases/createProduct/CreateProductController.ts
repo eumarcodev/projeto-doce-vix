@@ -13,13 +13,13 @@ class CreateProductController implements IController {
         next: NextFunction,
     ): Promise<void | Response<any, Record<string, any>>> {
         try {
-            const { name, description, categoryName, price, dayOfWeek } =
+            const { name, description, categoryGuid, price, dayOfWeek } =
                 request.body;
 
             const product = await this.useCase.execute({
                 name,
                 description,
-                categoryName,
+                categoryGuid,
                 price,
                 dayOfWeek,
             });

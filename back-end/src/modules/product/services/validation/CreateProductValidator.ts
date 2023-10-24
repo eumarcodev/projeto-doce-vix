@@ -14,7 +14,7 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
         name,
         description,
         price,
-        categoryName,
+        categoryGuid,
     }: ICreateProductDTO): Promise<void> {
         const productExists = await this.repository.findByName(name);
         if (productExists)
@@ -35,7 +35,7 @@ export class CreateProductValidator implements IValidator<ICreateProductDTO> {
         if (!price)
             throw new ErrorHandler("price is missing", HttpStatusCode.CONFLICT);
 
-        if (!categoryName)
+        if (!categoryGuid)
             throw new ErrorHandler(
                 "category is missing",
                 HttpStatusCode.CONFLICT,

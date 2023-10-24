@@ -4,7 +4,7 @@ interface ICreateProductDTO {
     name: string;
     description: string;
     price: number;
-    categoryName: string;
+    categoryGuid: string;
     dayOfWeek?: string;
 }
 
@@ -34,7 +34,7 @@ interface IProductRepository {
         name,
         description,
         price,
-        categoryName,
+        categoryGuid,
         dayOfWeek,
     }: ICreateProductDTO): Promise<IProduct | undefined>;
     update({
