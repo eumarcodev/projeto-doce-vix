@@ -12,7 +12,6 @@ import { dayOfWeekRoutes } from "./routes/dayOfWeek.routes";
 import { fileRoutes } from "./routes/file.routes";
 import { orderItemRouter, orderRouter } from "./routes/orders.routes";
 import { productRoutes } from "./routes/product.routes";
-import { refreshRouter } from "./routes/refresh.routes";
 import { userRoutes } from "./routes/users.routes";
 import { envs } from "./shared/envs";
 
@@ -38,7 +37,6 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/dayofweek", dayOfWeekRoutes);
 app.use("/login", authRoutes);
-app.use("/refresh", refreshRouter);
 app.use("/files", fileRoutes);
 
 if (envs.nodeEnv === "development") {
