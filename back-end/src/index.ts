@@ -2,6 +2,8 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
 import path from "path";
+import swaggerUI from "swagger-ui-express";
+import swaggerDocument from "../swagger.json";
 
 import { errorHandler } from "./middlewares/errorHandler";
 import { authRoutes } from "./routes/auth.routes";
@@ -27,6 +29,8 @@ app.get("/", (req, res) => {
     });
 });
 
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/orders", orderRouter);
 app.use("/orders/itens", orderItemRouter);
 app.use("/users", userRoutes);
