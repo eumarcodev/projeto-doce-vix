@@ -216,6 +216,7 @@
                                     "value": {
                                         "name": "X AMERICANO",
                                         "description": "Pao, ovo, presunto e queiro",
+                                        "categoryGuid": "a588aa13-f293-48b7-9661-45623fec27ab",
                                         "price": 19.99
                                     }
                                 }
@@ -305,6 +306,25 @@
                         "bearerAuth": []
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Products"
+                            },
+                            "examples": {
+                                "Products": {
+                                    "value": {
+                                        "name": "X AMERICANO",
+                                        "description": "Pao, ovo, presunto e queiro",
+                                        "categoryGuid": "a588aa13-f293-48b7-9661-45623fec27ab",
+                                        "price": 19.99
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -416,14 +436,15 @@
                         "type": "string",
                         "description": "Identificador único da categoria"
                     }
-            }
-        },
-        "securitySchemes": {
-            "bearerAuth": {
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat": "JWT"
+                }
+            },
+            "securitySchemes": {
+                "bearerAuth": {
+                    "type": "http",
+                    "scheme": "bearer",
+                    "bearerFormat": "JWT"
+                }
             }
         }
     }
-}}
+}
