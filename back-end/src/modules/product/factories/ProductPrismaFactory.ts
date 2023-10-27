@@ -5,10 +5,6 @@ import { IDefaultFactory } from "@/shared/infra/factories/IDefaultFactory";
 import { Product as PProduct } from "@prisma/client";
 
 import { IProduct } from "../model/IProduct";
-import { IFilePrisma } from "@/modules/file/factories/FilePrismaFactory";
-import { IListFileRequest } from "@/modules/file/repositories/IFileRepository";
-import { ICategoryPrisma } from "@/modules/category/factories/CategoryPrismaFactory";
-import { IDayOfWeekPrisma } from "@/modules/dayOfWeek/factories/DayOfWeekPrismaFactory";
 
 export interface IProductPrisma
     extends Omit<PProduct, "category" | "dayOfWeek" | "file"> {
@@ -42,12 +38,12 @@ export class ProductPrismaFactory
             price,
             files: files
                 ? {
-                      id: files.id,
-                      guid: files.guid,
-                      path: files.path,
-                      createdAt: files.createdAt,
-                      updatedAt: files.updatedAt,
-                  }
+                    id: files.id,
+                    guid: files.guid,
+                    path: files.path,
+                    createdAt: files.createdAt,
+                    updatedAt: files.updatedAt,
+                }
                 : undefined,
             category: {
                 id: category.id,
@@ -60,12 +56,12 @@ export class ProductPrismaFactory
 
             dayOfWeek: dayOfWeek
                 ? {
-                      id: dayOfWeek.id,
-                      guid: dayOfWeek.guid,
-                      name: dayOfWeek.name,
-                      createdAt: dayOfWeek.createdAt,
-                      updatedAt: dayOfWeek.updatedAt,
-                  }
+                    id: dayOfWeek.id,
+                    guid: dayOfWeek.guid,
+                    name: dayOfWeek.name,
+                    createdAt: dayOfWeek.createdAt,
+                    updatedAt: dayOfWeek.updatedAt,
+                }
                 : undefined,
             createdAt,
             updatedAt,

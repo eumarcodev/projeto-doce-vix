@@ -1,56 +1,15 @@
-# Doce Vix - API
+# 🍭 Doce Vix - API
 
-## Documentação (Swagger)
+## 📚 Documentação
 
----
+A documentação do projeto está disponível via Swagger. Acesse para entender todos os endpoints e suas funcionalidades.
 
-## Configurações iniciais:
+## 🚀 Iniciando com o Projeto
 
 ### Instalando dependências do projeto
 
 O projeto está utilizando o package manager 'npm' para lidar com os pacotes no node, sendo assim, para baixar as dependencias do projeto basta rodar o comando: `npm install`
 
-<br/>
-
-### Configurando variáveis de ambiente
-
-Após clonar o projeto, clone o arquivo `.env.example` para um novo arquivo 
-com nome `.env` na raiz do projeto. Em seguida, adicione as configurações
-necessárias no arquivo recem criado. Ao final o arquivo deve se parecer com o código a seguir:
-
-```
-NODE_ENV=development
-PORT=3333
-
-
-# PUBLIC FILES
-#
-PUBLIC_FILES_URL=http://localhost:3333
-PUBLIC_STATIC_LOCAL_FILES_URL=http://localhost:3333
-j
-# EMAIL SENDER
-#
-EMAIL_SENDER=
-EMAIL_REGION=
-
-# Database
-#
-DATABASE_URL="mysql://root:docker@localhost:3306/doce-vix"
-
-# Encryption
-#
-SALT=10
-
-# AWS S3
-#
-
-# JWT
-#
-JWT_SALT=123456
-
-```
-
-<br/>
 
 ### Gerando esquema do Prisma e criando estrutura no banco
 
