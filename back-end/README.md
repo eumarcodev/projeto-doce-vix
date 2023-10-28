@@ -3,6 +3,8 @@
 
 ![DoceVix](https://i.imgur.com/ESBpLeV.png)
 
+v1.0.0
+
 Este projeto representa a API oficial do restaurante Doce Vix, construída com as melhores práticas de desenvolvimento, incluindo o padrão Domain-Driven Design (DDD) e a metodologia de versionamento GitFlow.
 
 
