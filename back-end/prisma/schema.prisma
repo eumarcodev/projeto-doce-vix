@@ -33,19 +33,20 @@ model File {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  guid        String    @unique @default(uuid())
+  id          Int         @id @default(autoincrement())
+  guid        String      @unique @default(uuid())
   name        String
   description String
   price       Float
   categoryId  Int
-  category    Category  @relation(fields: [categoryId], references: [id])
-  files       File?     @relation(fields: [fileId], references: [id])
+  category    Category    @relation(fields: [categoryId], references: [id])
+  files       File?       @relation(fields: [fileId], references: [id])
   fileId      Int?
   createdAt   DateTime
   updatedAt   DateTime
-  DayOfWeek   DayOfWeek @relation(fields: [dayOfWeekId], references: [id])
-  dayOfWeekId Int
+  dayOfWeek   DayOfWeek?  @relation(fields: [dayOfWeekId], references: [id])
+  dayOfWeekId Int?
+  OrderItem   OrderItem[]
 }
 
 model DayOfWeek {
@@ -55,4 +56,71 @@ model DayOfWeek {
   createdAt DateTime
   updatedAt DateTime
   Product   Product[]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  name      String
+  email     String
+  password  String
+  isActive  Boolean  @default(true)
+  role      UserRole @default(USER)
+  createdAt DateTime
+  updatedAt DateTime
+  Token     Token[]
+  Order     Order[]
+
+  @@map("users")
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  token     String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  expireIn  DateTime
+  role      String
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("Tokens")
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  guid      String      @unique @default(uuid())
+  userId    Int
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime
+  updatedAt DateTime
+  total     Float
+  status    OrderStatus @default(PREPARING)
+  itens     OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+  createdAt DateTime
+  updatedAt DateTime
+  Order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+}
+
+enum OrderStatus {
+  PREPARING
+  READY
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }

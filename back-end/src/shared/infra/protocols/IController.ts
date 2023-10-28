@@ -7,4 +7,3 @@ export interface IController {
         next: NextFunction,
     ): Promise<Response | void>;
 }
-

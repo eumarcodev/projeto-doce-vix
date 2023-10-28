@@ -18,7 +18,7 @@ export class CurrentPageValidation implements ICurrentPageValidation {
         if ((currentPage ?? 0) >= totalPages) {
             throw new ErrorHandler(
                 "Page out of bounds",
-                HttpStatusCode.BAD_REQUEST
+                HttpStatusCode.BAD_REQUEST,
             );
         }
 
