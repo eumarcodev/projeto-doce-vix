@@ -20,14 +20,16 @@ Este projeto representa a API oficial do restaurante Doce Vix, construída com a
 
 - <a href="#gitflow">Metodologia Gitflow </a>
 
-- <a href="#auth">Autenticação</a>
+- <a href="#autenticacao">Autenticação</a>
 
-## Funcionalidades do projeto
+- <a href="#terminar">Proximos passos</a>
+
+## Funcionalidades
 
 - [x] Cadastro de usuarios
-- [x] Cadastro de produtos
+- [x] Cadastro e listagem de produtos
 - [x] Cadastro de categorias
-- [x] Cadastro de arquivos utilizando o multer
+- [x] Upload de arquivos utilizando o multer
 - [x] Login
 - [x] Fazer pedido
 
@@ -45,7 +47,7 @@ Este projeto representa a API oficial do restaurante Doce Vix, construída com a
 10. [GitFlow](https://www.alura.com.br/artigos/git-flow-o-que-e-como-quando-utilizar)
 
 
-## Como rodar este projeto?
+## Rodar
 
 ### Configurações iniciais
 
@@ -110,13 +112,13 @@ Para rodar o projeto utilize o script `dev` dentro do packages.json:
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura
 
 O projeto segue uma estrutura de diretórios coerente com o padrão DDD:
 
     node_modules/: Dependências do projeto.
     prisma/: Configurações e migrações do Prisma ORM.
-    requests/: [DESCRIÇÃO SE RELEVANTE]
+    requests/: Exemplos de requisições
     src/: Código-fonte principal.
         middlewares/: Middlewares de Express, incluindo autenticação e tratamento de erros.
         modules/: Domínios da aplicação. Cada domínio contém sua lógica de negócios, rotas e serviços.
@@ -132,7 +134,7 @@ O projeto segue uma estrutura de diretórios coerente com o padrão DDD:
 
 
 
-## 📌 Metodologia GitFlow
+## GitFlow
 
 Este projeto utiliza a metodologia GitFlow, que define um conjunto estrito de ramos para diferentes propósitos:
 
@@ -142,7 +144,7 @@ Este projeto utiliza a metodologia GitFlow, que define um conjunto estrito de ra
     hotfix/*: Ramos para correções rápidas em produção.
     release/*: Preparando novas releases.
 
-## 🔐 Autenticação
+## Autenticacao
 
 A API utiliza JWT para autenticação e autorização. Ao se autenticar, um token será fornecido e deverá ser incluído no cabeçalho Authorization das requisições.
 🚀 Como Rodar o Projeto
@@ -153,6 +155,11 @@ A API utiliza JWT para autenticação e autorização. Ao se autenticar, um toke
 ![swagger](https://i.imgur.com/kIUKW9p.png)
 ![SwaggerCategorias](https://i.imgur.com/EpiOtSx.png)
 ![SwaggerProdutos](https://i.imgur.com/NpJunHB.png)
+
+
+## Terminar 
+
+- Finalizar documentação com swagger
  
 
 
