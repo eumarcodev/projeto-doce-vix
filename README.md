@@ -20,7 +20,7 @@ Este projeto representa a API oficial do restaurante Doce Vix, construída com a
 
 - <a href="#estrutura">Estrutura do projeto </a>
 
-- <a href="#gitflow">Metodologia Gitflow </a>
+- <a href="#metodologias">Metodologias </a>
 
 - <a href="#autenticacao">Autenticação</a>
 
@@ -136,7 +136,9 @@ O projeto segue uma estrutura de diretórios coerente com o padrão DDD:
 
 
 
-## GitFlow
+## Metodologias
+
+### GitFLow
 
 Este projeto utiliza a metodologia GitFlow, que define um conjunto estrito de ramos para diferentes propósitos:
 
@@ -145,6 +147,16 @@ Este projeto utiliza a metodologia GitFlow, que define um conjunto estrito de ra
     feature/*: Ramos dedicados para novas funcionalidades.
     hotfix/*: Ramos para correções rápidas em produção.
     release/*: Preparando novas releases.
+
+
+### SOLID
+
+SOLID é um dos conjuntos mais populares de princípios de desenvolvimento de software orientado a objetos (OOD) e design de código. O conceito estabelece uma série de práticas que ajudam a escrever um código flexível, escalável, sustentável e reutilizável, facilitando a evolução e a manutenção dos programas.
+
+
+### DDD
+
+O Domain-Driven Design, ou DDD, foi criado para ajudar equipes a ter mais sucesso no desenvolvimento de software com alta qualidade. Quando implementado corretamente, o DDD entrega um design que traduz exatamente como o dominio funciona
 
 ## Autenticacao
 
