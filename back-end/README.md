@@ -162,4 +162,3 @@ A API utiliza JWT para autenticação e autorização. Ao se autenticar, um toke
 - Finalizar documentação com swagger
  
 
-
