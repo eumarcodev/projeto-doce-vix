@@ -61,5 +61,6 @@ export {
     IListProductRequest,
     IListProductResponse,
     IProductRepository,
-    IUpdateProductDTO,
+    IUpdateProductDTO
 };
+

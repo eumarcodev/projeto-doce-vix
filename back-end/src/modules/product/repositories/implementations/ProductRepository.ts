@@ -151,19 +151,26 @@ class ProductPrismaRepository implements IProductRepository {
     }: I.IListProductRequest): Promise<I.IListProductResponse | undefined> {
         const where = search
             ? {
-                  OR: [
-                      {
-                          name: {
-                              contains: search,
-                          },
-                      },
-                      {
-                          description: {
-                              contains: search,
-                          },
-                      },
-                  ],
-              }
+                OR: [
+                    {
+                        name: {
+                            contains: search,
+                        },
+                    },
+                    {
+                        description: {
+                            contains: search,
+                        },
+                    },
+                    {
+                        category: {
+                            name: {
+                                contains: search,
+                            }
+                        },
+                    },
+                ],
+            }
             : undefined;
 
         const count = await this.prismaClient.product.count({
@@ -224,10 +231,11 @@ class ProductPrismaRepository implements IProductRepository {
             }
         });
 
-        if(!productP) return undefined;
+        if (!productP) return undefined;
 
         return this.productPrismaFactory.generate(productP);
     }
 }
 
 export { ProductPrismaRepository };
+
