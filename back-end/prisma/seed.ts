@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+
 import { seedCategory } from "./seeds/category";
 import { seedDayOfWeek } from "./seeds/dayOfWeek";
 
@@ -20,4 +21,3 @@ main()
         await prisma.$disconnect();
         console.log("Prisma was disconnected");
     });
-

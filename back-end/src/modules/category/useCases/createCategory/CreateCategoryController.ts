@@ -1,9 +1,11 @@
-import { IController } from "@/shared/infra/protocols/IController";
 import { Request, Response, NextFunction } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
-import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
+import { IController } from "@/shared/infra/protocols/IController";
+
+import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 class CreateCategoryController implements IController {
     constructor(private readonly useCase: CreateCategoryUseCase) {}

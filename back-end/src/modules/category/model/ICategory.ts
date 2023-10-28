@@ -6,4 +6,3 @@ export interface ICategory {
     createdAt: Date;
     updatedAt: Date;
 }
-
