@@ -44,9 +44,6 @@ Este projeto representa a API oficial do restaurante Doce Vix, construída com a
 5. [PrismaORM](https://www.prisma.io/)
 6. [Multer](https://github.com/expressjs/multer)
 7. [JWT (JSON Web Tokens)](https://jwt.io/)
-8. [ Domain-Driven Design (DDD)](https://www.zup.com.br/blog/domain-driven-design-ddd)
-9. [SOLID](https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530)
-10. [GitFlow](https://www.alura.com.br/artigos/git-flow-o-que-e-como-quando-utilizar)
 
 
 ## Rodar
