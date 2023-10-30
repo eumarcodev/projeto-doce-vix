@@ -35,17 +35,13 @@ export const BotaoLogar = styled(Botao)`
     &:hover {
         background-color: ${variables.verdeEscuro};
     }
-
 `
 
 export const BotaoLogin = styled.button`
 background-color: ${variables.verdeClaro};
-
 `
 
 export const divBotao = styled.div`
 display: flex;
 justify-content: end;
-
-
 `
