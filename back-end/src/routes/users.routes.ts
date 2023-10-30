@@ -7,7 +7,7 @@ import { updateUserController } from "@/modules/users/useCases/updateUser";
 
 const userRoutes = Router();
 
-userRoutes.post("/", (request, response, next) => {
+userRoutes.post("/register", (request, response, next) => {
     return createUserController.handle(request, response, next);
 });
 
