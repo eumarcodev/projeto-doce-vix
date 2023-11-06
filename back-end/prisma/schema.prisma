@@ -59,24 +59,25 @@ model DayOfWeek {
 }
 
 model User {
-  id           Int            @id @default(autoincrement())
-  guid         String         @unique @default(uuid())
-  name         String
-  email        String
-  password     String
-  isActive     Boolean        @default(true)
-  role         UserRole       @default(USER)
-  createdAt    DateTime
-  updatedAt    DateTime
-  RefreshToken RefreshToken[]
-  Order        Order[]
+  id        Int      @id @default(autoincrement())
+  guid      String   @unique @default(uuid())
+  name      String
+  email     String
+  password  String
+  isActive  Boolean  @default(true)
+  role      UserRole @default(USER)
+  createdAt DateTime
+  updatedAt DateTime
+  Token     Token[]
+  Order     Order[]
 
   @@map("users")
 }
 
-model RefreshToken {
+model Token {
   id        Int      @id @default(autoincrement())
   guid      String   @unique @default(uuid())
+  token     String
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   expireIn  DateTime
@@ -84,7 +85,7 @@ model RefreshToken {
   createdAt DateTime
   updatedAt DateTime
 
-  @@map("refresh_token")
+  @@map("Tokens")
 }
 
 model Order {

@@ -2,34 +2,36 @@ import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { IService } from "@/shared/infra/protocols/IService";
 
-import { IRefreshToken } from "../../model/IRefreshToken";
+import { IGenerateToken } from "../../model/IGenerateToken";
 import {
-    IRefreshTokenRepository,
-    ISaveRefreshTokenDTO,
-} from "../../repositories/IRefreshTokenRepository";
+    IGenerateTokenRepository,
+    ISaveGenerateTokenDTO
+} from "../../repositories/IGenerateTokenRepository";
 
 export class GenerateRefreshTokenService
-    implements IService<ISaveRefreshTokenDTO, IRefreshToken>
+    implements IService<ISaveGenerateTokenDTO, IGenerateToken>
 {
-    constructor(private readonly repository: IRefreshTokenRepository) {}
+    constructor(private readonly repository: IGenerateTokenRepository) { }
 
     async execute({
+        token,
         role,
         userId,
         expireIn,
-    }: ISaveRefreshTokenDTO): Promise<IRefreshToken> {
-        const token = await this.repository.save({
+    }: ISaveGenerateTokenDTO): Promise<IGenerateToken> {
+        const Createtoken = await this.repository.save({
+            token,
             role,
             userId,
             expireIn,
         });
 
-        if (!token)
+        if (!Createtoken)
             throw new ErrorHandler(
                 "Error on save token",
                 HttpStatusCode.BAD_REQUEST,
             );
 
-        return token;
+        return Createtoken;
     }
 }

@@ -1,12 +1,9 @@
-import dayjs from "dayjs";
-
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 import { ITokenProvider } from "@/shared/infra/adapters/cryptography/ITokenProvider";
 import { IService } from "@/shared/infra/protocols/IService";
-
-import { IRefreshToken } from "../../model/IRefreshToken";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
+import dayjs from "dayjs";
+import { IGenerateToken } from "../../model/IGenerateToken";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { AuthUserValidator } from "./validation/AuthUserValidator";
 
@@ -17,19 +14,15 @@ export interface IRequest {
 
 export class AuthUserService
     implements
-        IService<IRequest, { token: string; refreshToken: IRefreshToken }>
+    IService<IRequest, IGenerateToken>
 {
     constructor(
         private readonly authUserValidator: AuthUserValidator,
         private readonly repository: IUserRepository,
-        private readonly refreshTokenRepository: IRefreshTokenRepository,
         private readonly tokenProvider: ITokenProvider,
-    ) {}
+    ) { }
 
-    async execute({ email, password }: IRequest): Promise<{
-        token: string;
-        refreshToken: IRefreshToken;
-    }> {
+    async execute({ email, password }: IRequest): Promise<IGenerateToken> {
         await this.authUserValidator.validate({
             email,
             password,
@@ -45,24 +38,16 @@ export class AuthUserService
 
         const token = await this.tokenProvider.generateToken(
             { userId: userExists.id, role: userExists.role },
-            "60s",
+            "1d",
         );
 
-        const expireIn = dayjs()
-            .add(Number(process.env.REFRESH_TOKEN_EXPIRATION), "day")
-            .toDate();
-        const refreshToken = await this.refreshTokenRepository.save({
+        const expireIn = dayjs().add(1, "day").toDate();
+
+        return {
+            token,
             userId: userExists.id,
-            expireIn,
             role: userExists.role,
-        });
-
-        if (!refreshToken)
-            throw new ErrorHandler(
-                "token invalid",
-                HttpStatusCode.UNAUTHORIZED,
-            );
-
-        return { token, refreshToken };
+            expireIn,
+        };
     }
 }

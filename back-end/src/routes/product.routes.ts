@@ -26,3 +26,4 @@ productRoutes.put("/", (request, response, next) => {
 // getToken, ensureAdmin,
 
 export { productRoutes };
+
