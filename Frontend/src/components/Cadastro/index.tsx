@@ -1,4 +1,4 @@
-import * as S from '../Login/styles'
+import * as S from './styles'
 import { TextField } from '@mui/material'
 import { ChangeEvent, FormEvent, useState } from "react"
 import { registerUser } from '../../services/api/userApi'
@@ -44,17 +44,17 @@ const Cadastro = () => {
     return (
         <>
             <S.divBotao>
-                <S.BotaoLogin onClick={openModal}>Cadastro</S.BotaoLogin>
+                <S.BotaoCadastroHeader onClick={openModal}>Cadastro</S.BotaoCadastroHeader>
             </S.divBotao>
-            <S.ModalStyleLogin isOpen={modalIsOpen} onRequestClose={closeModal}>
-                <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit}>
+            <S.ModalStyleRegister isOpen={modalIsOpen} onRequestClose={closeModal}>
+                <form onSubmit={handleSubmit}>
                     <h1>Cadastro</h1>
                     <TextField value={formData.name} onChange={handleInputChange} name='name' type='text' id="outlined-basic" label="Nome" variant="outlined" />
                     <TextField value={formData.email} onChange={handleInputChange} name='email' type='email' id="outlined-basic" label="E-mail" variant="outlined" />
                     <TextField value={formData.password} onChange={handleInputChange} name='password' type='password' id="outlined-basic" label="Senha" variant="outlined" />
-                    <S.BotaoLogar type='submit'>Cadastrar</S.BotaoLogar>
+                    <S.BotaoCadastrar type='submit'>Cadastrar</S.BotaoCadastrar>
                 </form>
-            </S.ModalStyleLogin>
+            </S.ModalStyleRegister>
         </>
     )
 }

@@ -7,8 +7,12 @@ export const ModalStyleLogin = styled(ModalStyle)`
     display: flex;
     flex-direction: column;
     padding: 32px;
-    
+
     gap: 16px;
+
+    form {
+        display: contents;
+    }
 
     h1 {
         text-align: center;
@@ -24,6 +28,9 @@ export const ModalStyleLogin = styled(ModalStyle)`
         }
     }
 `
+export const BotaoLoginHeader = styled.button`
+background-color: ${variables.verdeClaro};
+`
 
 export const BotaoLogar = styled(Botao)`
     background-color: ${variables.verdeClaro};
@@ -37,9 +44,6 @@ export const BotaoLogar = styled(Botao)`
     }
 `
 
-export const BotaoLogin = styled.button`
-background-color: ${variables.verdeClaro};
-`
 
 export const divBotao = styled.div`
 display: flex;
