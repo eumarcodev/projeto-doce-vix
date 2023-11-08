@@ -1,4 +1,5 @@
 import * as S from './styles'
+import PersonIcon from '@mui/icons-material/Person';
 import { TextField } from '@mui/material'
 import { FormEvent, useContext, useState } from "react"
 import { AuthContext } from '../../contexts/AuthContext'
@@ -10,6 +11,8 @@ const Login = () => {
 
     const { user } = useContext(AuthContext)
     const { signIn } = useContext(AuthContext)
+
+    console.log(user)
 
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
@@ -33,7 +36,10 @@ const Login = () => {
     return (
         <>
             <S.divBotao>
-                <S.BotaoLoginHeader onClick={openModal}>Login</S.BotaoLoginHeader>
+                <S.BotaoLoginHeader onClick={openModal}>
+                    <PersonIcon />
+                    Login
+                </S.BotaoLoginHeader>
             </S.divBotao>
             <S.ModalStyleLogin isOpen={modalIsOpen} onRequestClose={closeModal}>
                 <form onSubmit={handleSubmit}>
@@ -45,6 +51,7 @@ const Login = () => {
                     <p>Não possuí uma conta? <span>Criar Conta</span></p>
                 </form>
             </S.ModalStyleLogin>
+            <h1>Conta - {user?.email}</h1>
         </>
     )
 }

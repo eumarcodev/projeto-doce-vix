@@ -33,9 +33,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const getToken = Cookies.get('token')
 
         if (getToken) {
-            api.get('/users').then(response => {
+            api.get('/').then(response => {
                 const { email, role, userId } = response.data
-
+                
                 setUser({ email, role, userId })
             })
         }
@@ -50,15 +50,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
             const { role, userId, token } = response.data
 
+            Cookies.set('token', token, { expires: 30 })
+
             setUser({
                 email,
                 role,
                 userId
             })
 
-            Cookies.set('token', token, { expires: 30 })
-
-            console.log(token)
+            api.defaults.headers['Authorization'] = `Bearer ${token}`
 
             console.log(user)
 
@@ -74,9 +74,3 @@ export function AuthProvider({ children }: AuthProviderProps) {
         </AuthContext.Provider>
     )
 }
-
-// //Recupera o Token
-// Cookies.get('token')
-
-// //Remove o token
-// Cookies.remove('token')

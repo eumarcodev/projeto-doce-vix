@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Botao } from "../../styles";
 import variables from "../../styles/variables";
+import { Botao } from "../../styles";
 import { ModalStyle } from "../CardFood/styles";
 
 export const ModalStyleLogin = styled(ModalStyle)`
@@ -29,7 +29,25 @@ export const ModalStyleLogin = styled(ModalStyle)`
     }
 `
 export const BotaoLoginHeader = styled.button`
-background-color: ${variables.verdeClaro};
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: transparent;
+    
+    margin: 16px;
+    padding: 6px;
+
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: #c2c2c2;
+    }
 `
 
 export const BotaoLogar = styled(Botao)`

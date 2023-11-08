@@ -14,15 +14,15 @@ const Cabecalho = () => {
       </S.DivLogo>
       <Login />
       <Cadastro />
-      <S.StatusRestaurante>
-        Aberto
-      </S.StatusRestaurante>
       <S.DivTitulo>
         <h1>
           Doce<span>Vix</span> Restaurante e Lanchonete
         </h1>
         <p>Restaurante e lanchonete de comida brasileira. Bom almoço!!!</p>
       </S.DivTitulo>
+      <S.StatusRestaurante>
+        Aberto
+      </S.StatusRestaurante>
       <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />}>
           <M.Typography>
