@@ -7,4 +7,3 @@ app.listen(process.env.PORT ?? 3333, () =>
     context.prisma.$disconnect();
     console.log("Prisma was disconnected");
 });
-

@@ -1,5 +1,5 @@
 .vscode
-
+node_modules
 # Docker
 docker-compose.prod.yml
 
@@ -9,6 +9,7 @@ dist/
 build/
 .env
 
+uploads
 # Compiled Java class files
 *.class
 

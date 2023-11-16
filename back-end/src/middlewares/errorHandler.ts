@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-
 import { ValidationError } from "yup";
+
 import { HttpStatusCode } from "@/shared/constants/HttpStatusCode";
 import { ErrorHandler } from "@/shared/errors/ErrorHandler";
 
@@ -33,4 +33,3 @@ export const errorHandler = (
         .status(HttpStatusCode.SERVER_ERROR)
         .json({ message: "Unexpected error.", error });
 };
-

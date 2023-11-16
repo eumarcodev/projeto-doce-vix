@@ -59,7 +59,7 @@ export class DateTimeManipulation implements IDateTimeManipulation {
     }
 
     convertStrHourToDateTime(
-        hourString: string | null | undefined
+        hourString: string | null | undefined,
     ): Date | null {
         if (!hourString) {
             return null;
@@ -71,7 +71,7 @@ export class DateTimeManipulation implements IDateTimeManipulation {
     isTimeOfDateBetween(
         compareDateTime: Date,
         firstDateTime: Date,
-        secondDateTime: Date
+        secondDateTime: Date,
     ): boolean {
         const compareTimezone = compareDateTime.getTimezoneOffset();
 
